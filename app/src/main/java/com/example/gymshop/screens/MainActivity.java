@@ -1,14 +1,18 @@
-package com.example.gymshop;
+package com.example.gymshop.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.gymshop.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,10 +32,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_search) {
-            // הפונקציה שנקראת כאשר נבחרת אופציית החיפוש
-            return true;
-        }
+       // if (id == R.id.action_search) {
+       //     return true;
+     //  }
 
         return super.onOptionsItemSelected(item);
     }
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void connect(View view)
     {
-        Intent intent = new Intent(MainActivity.this, Login.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

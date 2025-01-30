@@ -1,4 +1,4 @@
-package com.example.gymshop.model;
+package com.example.gymshop.models;
 
 public class User
 {

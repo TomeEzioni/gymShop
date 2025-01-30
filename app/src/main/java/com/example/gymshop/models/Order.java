@@ -1,4 +1,6 @@
-package com.example.gymshop.model;
+package com.example.gymshop.models;
+
+import com.example.gymshop.models.Item;
 
 import java.util.List;
 
@@ -6,9 +8,9 @@ public class Order
 {
     String id;
     String idf;
-    List<Item>items;
+    List<com.example.gymshop.models.Item> items;
 
-    public Order(String id, String idf, List<Item> items)
+    public Order(String id, String idf, List<com.example.gymshop.models.Item> items)
     {
         this.id = id;
         this.id = idf;
@@ -39,13 +41,12 @@ public class Order
         this.idf = idf;
     }
 
-    public List<Item> getItems()
+    public List<com.example.gymshop.models.Item> getItems()
     {
         return items;
     }
 
-    public void setItems(List<Item> items)
-    {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 

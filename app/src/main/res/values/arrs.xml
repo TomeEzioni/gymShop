@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name="arrayColors">
+        <item>ירוק</item>
+        <item>כחול</item>
+        <item>שחור</item>
+        <item>לבן</item>
+        <item>צהוב</item>
+        <item>אדום</item>
+        <item>כתום</item>
+        <item>ורוד</item>
+        <item>סגול</item>
+    </string-array>
+
+    <string-array name="arrayTypes">
+        <item>אוכל</item>
+        <item>מתקני ספורט</item>
+        <item>ספורט ימי</item>
+        <item>רצועות וגומיות</item>
+        <item>משקולות וכוח</item>
+        <item>מזרני כושר</item>
+        <item>הטבות לחדרי כושר</item>
+    </string-array>
+
+</resources>
