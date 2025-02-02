@@ -3,6 +3,8 @@ package com.example.gymshop.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,7 +43,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         /// inflate the item_selected_item layout
         /// @see R.layout.item_selected_item
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.oneitem, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemrow, parent, false);
         return new ViewHolder(view);
     }
 
@@ -54,8 +56,19 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         Item item = itemList.get(position);
         if (item == null) return;
 
-       // holder.itemNameTextView.setText(item.getName());
-       // holder.itemImageView.setImageBitmap(ImageUtil.convertFrom64base(item.getImageBase64()));
+
+    //   holder.productImage.setImageBitmap(ImageUtil.convertFrom64base(item.getPic()));
+
+
+
+        holder.productName.setText(item.getName());
+        holder.productType.setText(item.getType());
+
+        holder.productColor.setText(item.getColor());
+        holder.productPrice.setText(item.getPrice()+"");
+        holder.productBrand.setText(item.getLogo());
+
+
     }
 
     /// get the number of items in the list
@@ -68,13 +81,29 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     /// View holder for the items adapter
     /// @see RecyclerView.ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        //public final TextView itemNameTextView;
-       // public final ImageView itemImageView;
+
+
+
+
+        private ImageView productImage;
+        private TextView productName, productType, productBrand, productColor, productPrice, productQuantity;
+
+
 
         public ViewHolder(View itemView) {
             super(itemView);
-            //itemNameTextView = itemView.findViewById(R.id.item_name_text_view);
-            //itemImageView = itemView.findViewById(R.id.item_image_view);
+
+
+            productImage = itemView.findViewById(R.id.ivProduct);
+            productName = itemView.findViewById(R.id.productName);
+            productType = itemView.findViewById(R.id.productType);
+            productBrand = itemView.findViewById(R.id.productBrand);
+            productColor = itemView.findViewById(R.id.productColor);
+            productPrice = itemView.findViewById(R.id.productPrice);
+          //  productQuantity = itemView.findViewById(R.id.productQuantity);
+
+
+
         }
     }
 }

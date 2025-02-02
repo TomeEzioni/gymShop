@@ -2,6 +2,7 @@ package com.example.gymshop.screens;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -9,33 +10,37 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.gymshop.R;
 import com.example.gymshop.Shopping_basket;
+import com.example.gymshop.adapters.ItemsAdapter;
+import com.example.gymshop.models.Cart;
+import com.example.gymshop.models.Item;
+import com.example.gymshop.services.DatabaseService;
+import com.google.firebase.database.core.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OneItem extends AppCompatActivity {
-    private ImageView productImage;
-    private TextView productName, productType, productBrand, productColor, productPrice, productQuantity;
     private Button increaseQuantity, decreaseQuantity, addToCartButton, homeButton, contactButton, foodButton, fitnessButton, waterSportsButton, bandsButton, weightsButton, matsButton,gymOffersButton;
     private ImageButton cartButton;
     private int quantity = 1;
+    RecyclerView rcItems;
+
+    ArrayList<Item> items;
+    private DatabaseService databaseService;
+
+    ItemsAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oneitem);
-
-        productImage = findViewById(R.id.productImage);
-        productName = findViewById(R.id.productName);
-        productType = findViewById(R.id.productType);
-        productBrand = findViewById(R.id.productBrand);
-        productColor = findViewById(R.id.productColor);
-        productPrice = findViewById(R.id.productPrice);
-        productQuantity = findViewById(R.id.productQuantity);
-        increaseQuantity = findViewById(R.id.btnIncreaseQuantity);
-        decreaseQuantity = findViewById(R.id.btnDecreaseQuantity);
-        addToCartButton = findViewById(R.id.btnAddToCartButton);
         homeButton = findViewById(R.id.btn_home);
-        cartButton = findViewById(R.id.btn_cart);
+
         contactButton = findViewById(R.id.btn_contact);
         foodButton = findViewById(R.id.btn_food);
         fitnessButton = findViewById(R.id.btn_fitness);
@@ -44,30 +49,51 @@ public class OneItem extends AppCompatActivity {
         weightsButton = findViewById(R.id.btn_weights);
         matsButton = findViewById(R.id.btn_mats);
         gymOffersButton = findViewById(R.id.btn_gym_offers);
+        rcItems = findViewById(R.id.rcItems);
+        items = new ArrayList<>();
 
-        productName.setText("משקולת 10 ק״ג");
-        productType.setText("סוג: ציוד כוח");
-        productBrand.setText("חברה: FitPro");
-        productColor.setText("צבע: שחור");
-        productPrice.setText("₪199");
-        productImage.setImageResource(R.drawable.dumbbells);
+       adapter=new ItemsAdapter(items);
 
-        increaseQuantity.setOnClickListener(new View.OnClickListener() {
+        databaseService = DatabaseService.getInstance();
+        databaseService.getItems(new DatabaseService.DatabaseCallback<List<Item>>() {
             @Override
-            public void onClick(View v) {
-                if (quantity < 10) {
-                    quantity++;
-                    productQuantity.setText(String.valueOf(quantity));
-                }
+            public void onCompleted(List<Item> object) {
+
+                Log.d("TAG", "onCompleted:" + object);
+                items.clear();
+                items.addAll(object);
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
             }
         });
+
+
+
+
+       
+    
+
+//        increaseQuantity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (quantity < 10) {
+//                    quantity++;
+//                   productQuantity.setText(String.valueOf(quantity));
+//                }
+//            }
+//        });
 
         decreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (quantity > 1) {
                     quantity--;
-                    productQuantity.setText(String.valueOf(quantity));
+                  //  productQuantity.setText(String.valueOf(quantity));
                 }
             }
         });

@@ -19,13 +19,13 @@
             android:name=".Shopping_basket"
             android:exported="false" />
         <activity
+            android:name=".screens.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".screens.OneItem"
             android:exported="false" />
         <activity
             android:name=".screens.AddItem"
-            android:exported="false" />
-        <activity
-            android:name=".screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
