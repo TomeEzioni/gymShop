@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymshop.R;
@@ -39,17 +40,21 @@ public class OneItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oneitem);
-        homeButton = findViewById(R.id.btn_home);
+        homeButton = findViewById(R.id.btn_home2);
 
-        contactButton = findViewById(R.id.btn_contact);
+        contactButton = findViewById(R.id.btn_contact2);
         foodButton = findViewById(R.id.btn_food);
-        fitnessButton = findViewById(R.id.btn_fitness);
-        waterSportsButton = findViewById(R.id.btn_water_sports);
-        bandsButton = findViewById(R.id.btn_bands);
-        weightsButton = findViewById(R.id.btn_weights);
+        fitnessButton = findViewById(R.id.btn_fitness2);
+        waterSportsButton = findViewById(R.id.btn_water_sports2);
+        bandsButton = findViewById(R.id.btn_bands2);
+        weightsButton = findViewById(R.id.btn_weights2);
         matsButton = findViewById(R.id.btn_mats);
-        gymOffersButton = findViewById(R.id.btn_gym_offers);
+        gymOffersButton = findViewById(R.id.btn_gym_offers2);
         rcItems = findViewById(R.id.rcItems);
+        rcItems.setLayoutManager(new LinearLayoutManager(this));
+
+
+        // decreaseQuantity=findViewById(R.id.btnDecreaseQuantity2);
         items = new ArrayList<>();
 
        adapter=new ItemsAdapter(items);
@@ -62,6 +67,7 @@ public class OneItem extends AppCompatActivity {
                 Log.d("TAG", "onCompleted:" + object);
                 items.clear();
                 items.addAll(object);
+                rcItems.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
             }
@@ -73,11 +79,6 @@ public class OneItem extends AppCompatActivity {
         });
 
 
-
-
-       
-    
-
 //        increaseQuantity.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -88,22 +89,22 @@ public class OneItem extends AppCompatActivity {
 //            }
 //        });
 
-        decreaseQuantity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (quantity > 1) {
-                    quantity--;
-                  //  productQuantity.setText(String.valueOf(quantity));
-                }
-            }
-        });
+//        decreaseQuantity.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (quantity > 1) {
+//                    quantity--;
+//                    productQuantity.setText(String.valueOf(quantity));
+//                }
+//            }
+//        });
 
-        addToCartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(OneItem.this, "נוספו " + quantity + " יחידות לעגלה!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        addToCartButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(OneItem.this, "נוספו " + quantity + " יחידות לעגלה!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,13 +114,13 @@ public class OneItem extends AppCompatActivity {
             }
         });
 
-        cartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OneItem.this, Shopping_basket.class);
-                startActivity(intent);
-            }
-        });
+//        cartButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(OneItem.this, Shopping_basket.class);
+//                startActivity(intent);
+//            }
+//        });
 
         contactButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -16,6 +18,8 @@ import com.example.gymshop.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    Button btnSingIn, btnConnection, btnSearch;
+    SearchView serv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void initViews()
+    {
+        btnSingIn = findViewById(R.id.btnSignIn);
+        btnConnection = findViewById(R.id.btnConnection);
+        btnSearch = findViewById(R.id.btnSearch);
+        serv = findViewById(R.id.serv);
+    }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -48,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
     public void connect(View view)
     {
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void Search(View view)
+    {
+        Intent intent = new Intent(MainActivity.this, OneItem.class);
         startActivity(intent);
     }
 }

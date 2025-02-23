@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,10 +34,10 @@ import com.example.gymshop.models.Item;
 import com.example.gymshop.services.DatabaseService;
 import com.example.gymshop.utils.ImageUtil;
 
-public class AddItem extends AppCompatActivity implements View.OnClickListener {
+public class AddItem extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     Spinner spColor, spType;
-    String color, type;
+    String color="", type;
     Button btnTakePic, btnGallery, btnPluse;
     ImageView ivProduct;
     Bitmap bitmap;
@@ -61,7 +62,8 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_item);
@@ -118,13 +120,15 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
         etPrice = findViewById(R.id.etPrice);
         etCompany = findViewById(R.id.etCompany);
 
+        spType.setOnItemSelectedListener(this);
+
     }
 
 
     @Override
     public void onClick(View v) {
         if (v.getId() == btnPluse.getId()) {
-            Log.d(TAG, "Add food button clicked");
+            Log.d(TAG, "Add item button clicked");
             addItemToDatabase();
             return;
         }
@@ -148,9 +152,11 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
         /// get the values from the input fields
         name = etItemName.getText().toString();
         stPrice = etPrice.getText().toString();
+        stPrice = stPrice.replace(",", "");
         company = etCompany.getText().toString();
         color = spColor.getSelectedItem().toString();
         type = spType.getSelectedItem().toString();
+
         String imageBase64 = ImageUtil.convertTo64Base(ivProduct);
 
         /// validate the input
@@ -187,6 +193,9 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
                 etItemName.setText("");
                 etPrice.setText("");
                 ivProduct.setImageBitmap(null);
+
+                Intent intent = new Intent(AddItem.this, MainActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -247,5 +256,23 @@ public class AddItem extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
+        type= (String) adapterView.getItemAtPosition(i);
+        color="null";
+        if(i==0||i==7){
+            spColor.setVisibility(View.INVISIBLE);
+
+
+
+
+        }
+        else  spColor.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

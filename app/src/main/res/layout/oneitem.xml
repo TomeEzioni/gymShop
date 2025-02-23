@@ -20,7 +20,7 @@
             android:src="@drawable/logo" />
 
         <ImageButton
-            android:id="@+id/btn_cart"
+            android:id="@+id/btn_cart2"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@android:color/transparent"
@@ -28,13 +28,13 @@
             android:src="@drawable/shopping" />
 
         <Button
-            android:id="@+id/btn_contact"
+            android:id="@+id/btn_contact2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="צור קשר" />
 
         <Button
-        android:id="@+id/btn_home"
+        android:id="@+id/btn_home2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="דף הבית" />
@@ -48,7 +48,7 @@
         android:background="@color/black">
 
         <Button
-            android:id="@+id/btn_food"
+            android:id="@+id/btn_food2"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="אוכל"
@@ -56,7 +56,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_fitness"
+            android:id="@+id/btn_fitness2"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="מתקני ספורט"
@@ -64,7 +64,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_water_sports"
+            android:id="@+id/btn_water_sports2"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="ספורט ימי"
@@ -72,7 +72,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_bands"
+            android:id="@+id/btn_bands2"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="רצועות וגומיות"
@@ -80,7 +80,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_weights"
+            android:id="@+id/btn_weights2"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="משקולות וכוח"
@@ -88,7 +88,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_mats"
+            android:id="@+id/btn_mats2"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="מזרני כושר"
@@ -96,7 +96,7 @@
             android:background="@color/black"/>
 
         <Button
-            android:id="@+id/btn_gym_offers"
+            android:id="@+id/btn_gym_offers2"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
             android:text="הטבות לחדרי כושר"
@@ -107,7 +107,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcItems"
         android:layout_width="match_parent"
-        android:layout_height="500dp" />
+        android:layout_height="731dp" />
 
 
 </LinearLayout>
