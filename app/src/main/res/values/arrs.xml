@@ -9,11 +9,14 @@
         <item>אדום</item>
         <item>כתום</item>
         <item>ורוד</item>
+        <item>חום</item>
+        <item>אפור</item>
         <item>סגול</item>
     </string-array>
 
     <string-array name="arrayTypes">
         <item>אוכל</item>
+        <item>בגדים</item>
         <item>מתקני ספורט</item>
         <item>ספורט ימי</item>
         <item>רצועות וגומיות</item>

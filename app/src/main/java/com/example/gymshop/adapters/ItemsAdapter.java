@@ -67,6 +67,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         holder.productColor.setText(item.getColor());
         holder.productPrice.setText(item.getPrice()+"");
         holder.productBrand.setText(item.getLogo());
+        holder.productImage.setImageBitmap(ImageUtil.convertFrom64base(item.getPic()));
+
 
 
     }
@@ -94,13 +96,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             super(itemView);
 
 
-            productImage = itemView.findViewById(R.id.ivProduct);
+            productImage = itemView.findViewById(R.id.ivProductAD);
             productName = itemView.findViewById(R.id.productName);
             productType = itemView.findViewById(R.id.productType);
             productBrand = itemView.findViewById(R.id.productBrand);
             productColor = itemView.findViewById(R.id.productColor);
             productPrice = itemView.findViewById(R.id.productPrice);
-          //  productQuantity = itemView.findViewById(R.id.productQuantity);
+         // productQuantity = itemView.findViewById(R.id.productQuantity);
 
 
 
