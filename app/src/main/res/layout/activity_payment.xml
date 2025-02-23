@@ -5,74 +5,101 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.Payment"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:weightSum="1">
 
-        <EditText
-            android:id="@+id/editTextIdentityCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="תעודת זהות"
-            android:padding="10dp"
-            android:background="@android:drawable/edit_text"/>
+    <!-- כותרת תשלום -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="432dp"
+        android:layout_height="254dp"
+        android:layout_marginBottom="100dp"
+        android:gravity="center"
+        android:text="תשלום"
+        android:textColor="@color/black"
+        android:textSize="80dp"
+        android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/editTextName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="שם מלא"
-            android:padding="10dp"
-            android:background="@android:drawable/edit_text" />
+    <!-- תעודת זהות -->
+    <EditText
+        android:id="@+id/editTextIdentityCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="תעודת זהות"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/editTextCardNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="מספר כרטיס"
-            android:inputType="number"
-            android:padding="10dp"
-            android:background="@android:drawable/edit_text" />
+    <!-- שם מלא -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="שם מלא"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
 
+    <!-- מספר כרטיס -->
+    <EditText
+        android:id="@+id/editTextCardNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר כרטיס"
+        android:inputType="number"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
+
+    <!-- ליניאר לאוריינטציה אופקית עבור החודש והשנה -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_marginBottom="16dp">
 
+        <!-- Spinner חודש -->
         <Spinner
             android:id="@+id/spinnerMonth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:entries="@array/months_array"/>
 
+        <!-- Spinner שנה -->
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:spinnerMode="dropdown" />
+            android:spinnerMode="dropdown"
+            android:entries="@array/years_array"
+            />
     </LinearLayout>
 
-
+    <!-- CVV -->
     <EditText
-            android:id="@+id/editTextCVV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="CVV"
-            android:inputType="numberPassword"
-            android:padding="10dp"
-            android:background="@android:drawable/edit_text" />
+        android:id="@+id/editTextCVV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="CVV"
+        android:inputType="numberPassword"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
 
-        <Button
-            android:id="@+id/buttonPay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="בצע תשלום"
-            android:background="@android:color/holo_green_dark"
-            android:textColor="#FFFFFF"
-            android:padding="12dp"
-            android:layout_marginTop="16dp" />
+    <!-- כפתור תשלום -->
+    <Button
+        android:id="@+id/buttonPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="בצע תשלום"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="#FFFFFF"
+        android:padding="12dp"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

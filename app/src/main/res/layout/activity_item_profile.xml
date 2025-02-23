@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -11,90 +11,92 @@
     android:padding="16dp"
     tools:context=".Item_Profile">
 
-
+    <!-- תמונת המוצר -->
     <ImageView
         android:id="@+id/ivItemImagePr"
-        android:layout_width="371dp"
-        android:layout_height="373dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.032" />
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/rounded_corners_light"
+        android:layout_weight="0.4" /> <!-- תמונה שתקבל 40% מהגודל של המסך -->
 
+    <!-- שם המוצר -->
     <TextView
-        android:id="@+id/tvItemNamePr"
-        android:layout_width="92dp"
-        android:layout_height="44dp"
-        android:paddingBottom="8dp"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <TextView
-        android:id="@+id/tvItemTypePr"
-        android:layout_width="101dp"
-        android:layout_height="43dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
-
-    <TextView
-        android:id="@+id/tvItemColorPr"
-        android:layout_width="95dp"
-        android:layout_height="48dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
-
-    <TextView
-        android:id="@+id/tvItemLogoPr"
-        android:layout_width="97dp"
-        android:layout_height="45dp"
-        android:textColor="@color/dark_gray"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <TextView
-        android:id="@+id/tvItemPricePr"
-        android:layout_width="103dp"
-        android:layout_height="52dp"
-        android:paddingTop="8dp"
-        android:textColor="@android:color/holo_red_dark"
+        android:id="@+id/tvItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="שם המוצר"
         android:textSize="22sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.828" />
+        android:textColor="#333333"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:padding="8dp"
+        tools:text="כפפות כושר"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- תיאור המוצר -->
+
+    <!-- כפתור הוספה לעגלה -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="0.4"
+        android:background="@drawable/rounded_corners_light"
+        android:orientation="vertical"
+        android:padding="16dp"> <!-- ייתן לחלק הזה 40% מהמסך -->
+
+        <TextView
+            android:id="@+id/tvItemTypePr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="סוג: "
+            android:textColor="#666666"
+            android:textSize="18sp"
+            tools:text="סוג: אביזרי כושר" />
+
+        <TextView
+            android:id="@+id/tvItemColorPr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="צבע: "
+            android:textColor="#666666"
+            android:textSize="18sp"
+            tools:text="צבע: שחור" />
+
+        <TextView
+            android:id="@+id/tvItemLogoPr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="מותג: "
+            android:textColor="#666666"
+            android:textSize="18sp"
+            tools:text="מותג: Nike" />
+
+        <TextView
+            android:id="@+id/tvItemPricePr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מחיר: ₪"
+            android:textColor="#FF5722"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="מחיר: ₪199" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnAddToCart"
+        android:layout_width="308dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FF9800"
+        android:padding="12dp"
+        android:text="הוסף לעגלה"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+</LinearLayout>

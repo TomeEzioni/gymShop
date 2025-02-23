@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Shopping_basket">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="1"
+    android:background="@android:color/white">
 
+    <!-- כותרת סל קניות -->
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="424dp"
-        android:layout_height="116dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="סל קניות"
         android:textColor="@color/black"
-        android:gravity="center"
-        android:textSize="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        android:background="#ADAAAA"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:padding="16dp" />
 
-    <ListView
-        android:layout_width="424dp"
-        android:layout_height="834dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.901" />
+    <!-- RecyclerView להצגת פריטים בסל -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvShoppingBasket"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
 
+    <!-- כפתור לביצוע צ'קאאוט -->
+    <Button
+        android:id="@+id/btnBeyondPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="מעבר לתשלום"
+        android:textColor="@color/black"
+        android:backgroundTint="#ADAAAA"
+        android:onClick="beyomdPayment"
+        android:padding="16dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

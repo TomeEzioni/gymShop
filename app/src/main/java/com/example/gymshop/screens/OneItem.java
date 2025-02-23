@@ -1,6 +1,7 @@
 package com.example.gymshop.screens;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.gymshop.Item_Profile;
 import com.example.gymshop.R;
 import com.example.gymshop.Shopping_basket;
 import com.example.gymshop.adapters.ItemsAdapter;
@@ -25,109 +27,88 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OneItem extends AppCompatActivity {
-    private Button increaseQuantity, decreaseQuantity, addToCartButton, homeButton, contactButton, foodButton, fitnessButton, waterSportsButton, bandsButton, weightsButton, matsButton,gymOffersButton;
-    private ImageButton cartButton;
-    private int quantity = 1;
+
     RecyclerView rcItems;
-
     ArrayList<Item> items;
-    private DatabaseService databaseService;
-
     ItemsAdapter adapter;
-
+    ImageButton btnCart2;
+    Button btnHome, btnContact;
+    ArrayList<Item> cartItems = new ArrayList<>();
+    private DatabaseService databaseService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oneitem);
-        homeButton = findViewById(R.id.btn_home2);
 
-        contactButton = findViewById(R.id.btn_contact2);
-        foodButton = findViewById(R.id.btn_food);
-        fitnessButton = findViewById(R.id.btn_fitness2);
-        waterSportsButton = findViewById(R.id.btn_water_sports2);
-        bandsButton = findViewById(R.id.btn_bands2);
-        weightsButton = findViewById(R.id.btn_weights2);
-        matsButton = findViewById(R.id.btn_mats);
-        gymOffersButton = findViewById(R.id.btn_gym_offers2);
         rcItems = findViewById(R.id.rcItems);
         rcItems.setLayoutManager(new LinearLayoutManager(this));
 
-
-        // decreaseQuantity=findViewById(R.id.btnDecreaseQuantity2);
         items = new ArrayList<>();
+        adapter = new ItemsAdapter(items);
+        rcItems.setAdapter(adapter);
 
-       adapter=new ItemsAdapter(items);
+        btnCart2 = findViewById(R.id.btn_cart2);
+        btnHome = findViewById(R.id.btn_home2);
+        btnContact = findViewById(R.id.btn_contact2);
+
+        // שמירת המוצר שנבחר לעגלה
+        adapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Item item) {
+                addToCart(item);  // הוספת המוצר לעגלה
+            }
+        });
+
+        Intent intent = new Intent(this, Shopping_basket.class);
+        intent.putExtra("cartItems", cartItems);
+        startActivity(intent);
 
         databaseService = DatabaseService.getInstance();
         databaseService.getItems(new DatabaseService.DatabaseCallback<List<Item>>() {
             @Override
             public void onCompleted(List<Item> object) {
-
                 Log.d("TAG", "onCompleted:" + object);
                 items.clear();
                 items.addAll(object);
-                rcItems.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onFailed(Exception e) {
-
-            }
-        });
-
-
-//        increaseQuantity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (quantity < 10) {
-//                    quantity++;
-//                   productQuantity.setText(String.valueOf(quantity));
-//                }
-//            }
-//        });
-
-//        decreaseQuantity.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (quantity > 1) {
-//                    quantity--;
-//                    productQuantity.setText(String.valueOf(quantity));
-//                }
-//            }
-//        });
-
-//        addToCartButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(OneItem.this, "נוספו " + quantity + " יחידות לעגלה!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OneItem.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-//        cartButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(OneItem.this, Shopping_basket.class);
-//                startActivity(intent);
-//            }
-//        });
-
-        contactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(OneItem.this,Shopping_basket.class);
-                startActivity(intent);
+                Log.e("TAG", "Error fetching items", e);
             }
         });
     }
+s
+    // הוספת פריט לעגלה
+    private void addToCart(Item item) {
+        cartItems.add(item);
+        Toast.makeText(this, item.getName() + " נוסף לעגלה!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void shoppingBasket(View view) {
+        Intent intent = new Intent(OneItem.this, Shopping_basket.class);
+        startActivity(intent);
+    }
+
+    public void home(View view) {
+        Intent intent = new Intent(OneItem.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void contact(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"tomerezioni@gmail.com"}); // החלף בכתובת שלך
+        intent.putExtra(Intent.EXTRA_SUBJECT, "נושא ההודעה");
+        intent.putExtra(Intent.EXTRA_TEXT, "שלום, אני מעוניין ליצור קשר...");
+
+        try {
+            startActivity(Intent.createChooser(intent, "בחר אפליקציה לשליחת אימייל"));
+        } catch (android.content.ActivityNotFoundException e) {
+            Toast.makeText(this, "לא נמצאה אפליקציה לשליחת אימייל", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
+

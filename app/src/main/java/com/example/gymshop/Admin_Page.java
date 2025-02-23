@@ -1,6 +1,8 @@
 package com.example.gymshop;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Admin_Page extends AppCompatActivity {
+
+    Button btnAddItAd,btnUsAd, btnPurAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +24,11 @@ public class Admin_Page extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+    private void initViews()
+    {
+        btnAddItAd = findViewById(R.id.btnAddItemAdmin);
+        btnUsAd = findViewById(R.id.btnUsersAdmin);
+        btnPurAd = findViewById(R.id.btnPurchasesAdmin);
     }
 }

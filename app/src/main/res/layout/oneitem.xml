@@ -25,18 +25,21 @@
             android:layout_height="50dp"
             android:background="@android:color/transparent"
             android:contentDescription="סל קניות"
+            android:onClick="shoppingBasket"
             android:src="@drawable/shopping" />
 
         <Button
             android:id="@+id/btn_contact2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="contact"
             android:text="צור קשר" />
 
         <Button
         android:id="@+id/btn_home2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+            android:onClick="home"
         android:text="דף הבית" />
     </LinearLayout>
 

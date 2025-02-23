@@ -28,6 +28,10 @@ public class DatabaseService {
     /// @see Log
     private static final String TAG = "DatabaseService";
 
+    public void getItemById(String itemId, DatabaseCallback<Item> שגיאה_בטעינת_הנתונים) {
+
+    }
+
     /// callback interface for database operations
     /// @param <T> the type of the object to return
     /// @see DatabaseCallback#onCompleted(Object)
