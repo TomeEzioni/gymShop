@@ -7,18 +7,25 @@ import java.util.List;
 public class Order
 {
     String id;
-    String idf;
+    User User;
     List<com.example.gymshop.models.Item> items;
 
-    public Order(String id, String idf, List<com.example.gymshop.models.Item> items)
-    {
+    public Order(String id, com.example.gymshop.models.User user, List<Item> items) {
         this.id = id;
-        this.id = idf;
+        User = user;
         this.items = items;
     }
 
     public Order()
     {
+    }
+
+    public com.example.gymshop.models.User getUser() {
+        return User;
+    }
+
+    public void setUser(com.example.gymshop.models.User user) {
+        User = user;
     }
 
     public String getId()
@@ -31,15 +38,8 @@ public class Order
         this.id = id;
     }
 
-    public String getIdf()
-    {
-        return id;
-    }
 
-    public void setIdf(String idf)
-    {
-        this.idf = idf;
-    }
+
 
     public List<com.example.gymshop.models.Item> getItems()
     {
@@ -51,11 +51,10 @@ public class Order
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
-                ", id='" + idf + '\'' +
+                ", User=" + User +
                 ", items=" + items +
                 '}';
     }

@@ -1,6 +1,7 @@
 package com.example.gymshop;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,7 @@ import com.example.gymshop.adapters.ItemsAdapter;
 import com.example.gymshop.models.Item;
 import com.example.gymshop.screens.OneItem;
 import com.example.gymshop.screens.Payment;
-
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Shopping_basket extends AppCompatActivity {
@@ -25,6 +26,9 @@ public class Shopping_basket extends AppCompatActivity {
     ItemsAdapter adapter;
     ArrayList<Item> cartItems;
     Button btnBePayment;
+
+    private static final String CART_PREFS = "CartPrefs";
+    private static final String CART_KEY = "cartItems";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,12 @@ public class Shopping_basket extends AppCompatActivity {
         rcCart = findViewById(R.id.rcvShoppingBasket);
         rcCart.setLayoutManager(new LinearLayoutManager(this));
 
+        SharedPreferences sharedPreferences = getSharedPreferences(CART_PREFS, MODE_PRIVATE);
+        // Gson gson = new Gson();
+        String json = sharedPreferences.getString(CART_KEY, "[]");
+
+        //Type type = new TypeToken<ArrayList<Item>>() {}.getType();
+       // cartItems = gson.fromJson(json, type);
         // קבלת רשימת המוצרים מהאינטנט
         cartItems = (ArrayList<Item>) getIntent().getSerializableExtra("cartItems");
 
