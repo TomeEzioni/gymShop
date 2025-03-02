@@ -1,7 +1,6 @@
-package com.example.gymshop;
+package com.example.gymshop.screens;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
@@ -9,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.gymshop.R;
 
 public class Admin_Page extends AppCompatActivity {
 

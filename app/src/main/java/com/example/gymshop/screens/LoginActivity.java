@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private AuthenticationService authenticationService;
     private DatabaseService databaseService;
-    private User user;
+    private User user=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         /// set the click listener
         btnLogin.setOnClickListener(this);
+        if(user!=null){
+
+            etEmail.setText(user.getEmail());
+            etPassword.setText(user.getPassword());
+        }
     }
 
     @Override

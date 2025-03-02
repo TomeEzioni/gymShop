@@ -1,6 +1,8 @@
 package com.example.gymshop.models;
 
-public class Item
+import java.io.Serializable;
+
+public class Item implements Serializable
 {
     String id;
     String name;

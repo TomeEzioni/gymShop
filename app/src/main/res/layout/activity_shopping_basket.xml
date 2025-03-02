@@ -34,7 +34,7 @@
         android:id="@+id/btnBeyondPayment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="מעבר לתשלום"
+        android:text="מעבר לתשלום:"
         android:textColor="@color/black"
         android:backgroundTint="#ADAAAA"
         android:onClick="beyomdPayment"

@@ -1,4 +1,4 @@
-package com.example.gymshop;
+package com.example.gymshop.screens;
 
 import android.os.Bundle;
 import android.widget.ListView;
@@ -9,6 +9,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gymshop.R;
 import com.example.gymshop.models.User;
 import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.services.DatabaseService;

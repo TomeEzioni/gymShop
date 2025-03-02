@@ -1,4 +1,4 @@
-package com.example.gymshop;
+package com.example.gymshop.screens;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gymshop.R;
 import com.example.gymshop.models.Item;
 import com.example.gymshop.services.DatabaseService;
 import com.example.gymshop.utils.ImageUtil;

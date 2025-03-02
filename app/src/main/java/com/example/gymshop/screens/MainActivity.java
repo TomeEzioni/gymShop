@@ -15,12 +15,10 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
-import com.example.gymshop.ShowUsers;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btnSingIn, btnConnection, btnSearch;
-    SearchView serv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         btnSingIn = findViewById(R.id.btnSignIn);
         btnConnection = findViewById(R.id.btnConnection);
         btnSearch = findViewById(R.id.btnSearch);
-        serv = findViewById(R.id.serv);
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

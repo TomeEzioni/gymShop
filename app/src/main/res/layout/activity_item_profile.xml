@@ -45,6 +45,7 @@
         android:layout_weight="0.4"
         android:background="@drawable/rounded_corners_light"
         android:orientation="vertical"
+        android:gravity="right"
         android:padding="16dp"> <!-- ייתן לחלק הזה 40% מהמסך -->
 
         <TextView
@@ -86,6 +87,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             tools:text="מחיר: ₪199" />
+
+
     </LinearLayout>
 
     <Button

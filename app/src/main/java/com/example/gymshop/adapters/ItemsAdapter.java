@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.example.gymshop.Item_Profile;
 import com.example.gymshop.R;
 import com.example.gymshop.models.Item;
+import com.example.gymshop.screens.Item_Profile;
+import com.example.gymshop.screens.OneItem;
+import com.example.gymshop.screens.Shopping_basket;
 import com.example.gymshop.utils.ImageUtil;
 
 import java.util.List;
@@ -24,7 +26,7 @@ import java.util.List;
 /// Adapter for the items recycler view
 /// @see RecyclerView
 /// @see Item
-/// @see R.layout#item_selected_item
+/// @see R.layout#//item_selected_item
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
     private final List<Item> itemList;
     private final OnItemClickListener listener;
@@ -88,7 +90,15 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         });
 
 
-        //holder.btnAddToCart.setOnClickListener(v -> listener.onAddToCartClick(item));
+        Context context = holder.itemView.getContext();
+        if (context.equals(Shopping_basket.class))
+            holder.btnAddToCart.setVisibility(View.GONE);
+        else {
+            holder.btnAddToCart.setOnClickListener(v -> {
+
+                ((OneItem) context).addItemToCart(item); // הוספת המוצר לעגלה
+            });
+        }
     }
 
     @Override

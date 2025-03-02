@@ -2,10 +2,11 @@ package com.example.gymshop.models;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable {
 
     /// unique id of the cart
     private String id;
