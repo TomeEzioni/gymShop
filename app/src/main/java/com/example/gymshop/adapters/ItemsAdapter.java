@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,7 +27,7 @@ import java.util.List;
 /// @see R.layout#item_selected_item
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
     private final List<Item> itemList;
-    private final OnItemClickListener listener; // ממשק ללחיצה
+    private final OnItemClickListener listener;
 
     public interface OnItemClickListener {
         void onAddToCartClick(Item item); // פעולה שתתבצע בלחיצה על "הוסף לעגלה"
@@ -38,28 +37,58 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
         this.itemList = itemList;
         this.listener = listener;
     }
+    public ItemsAdapter(List<Item> itemList) {
+        this.itemList = itemList;
+        this.listener = new OnItemClickListener() {
+            @Override
+            public void onAddToCartClick(Item item) {
+
+            }
+        };
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemrow, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_itemrow, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
+    {
         Item item = itemList.get(position);
         if (item == null) return;
-
         holder.productName.setText(item.getName());
         holder.productType.setText(item.getType());
         holder.productColor.setText(item.getColor());
         holder.productPrice.setText("₪" + item.getPrice());
         holder.productBrand.setText(item.getLogo());
         holder.productImage.setImageBitmap(ImageUtil.convertFrom64base(item.getPic()));
+        holder.btnAddToCart.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAddToCartClick(item); // קריאה למאזין
+            }
+        });
 
         // מאזין לכפתור הוספה לעגלה
-        holder.btnAddToCart.setOnClickListener(v -> listener.onAddToCartClick(item));
+
+        holder.btnAddToCart.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onAddToCartClick(item);
+            }
+        });
+
+
+        holder.itemView.setOnClickListener(v -> {
+            Context context = holder.itemView.getContext();
+            Intent intent = new Intent(context, Item_Profile.class);
+            intent.putExtra("itemId", item.getId()); // שולח את ה-ID של המוצר
+            context.startActivity(intent);
+        });
+
+
+        //holder.btnAddToCart.setOnClickListener(v -> listener.onAddToCartClick(item));
     }
 
     @Override

@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
+import com.example.gymshop.ShowUsers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -65,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
     public void Search(View view)
     {
         Intent intent = new Intent(MainActivity.this, OneItem.class);
+        startActivity(intent);
+    }
+
+    public void show(View view) {
+        Intent intent = new Intent(MainActivity.this, ShowUsers.class);
         startActivity(intent);
     }
 }

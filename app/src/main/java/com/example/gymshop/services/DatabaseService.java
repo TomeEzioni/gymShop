@@ -30,6 +30,7 @@ public class DatabaseService {
 
     public void getItemById(String itemId, DatabaseCallback<Item> שגיאה_בטעינת_הנתונים) {
 
+
     }
 
     /// callback interface for database operations
@@ -279,5 +280,23 @@ public class DatabaseService {
         });
     }
 
+        /// create a new cart in the database
+        /// @param cart the cart object to create
+        /// @param callback the callback to call when the operation is completed
+        ///               the callback will receive void
+        ///              if the operation fails, the callback will receive an exception
+        /// @return void
+        /// @see DatabaseCallback
+        /// @see Cart
+        public void updateCart(@NotNull final Cart cart, String uid ,@Nullable final DatabaseCallback<Void> callback) {
+            writeData("Users/" + uid+"/cart", cart, callback);
+        }
 
-}
+
+
+
+
+    }
+
+
+

@@ -1,32 +1,31 @@
 package com.example.gymshop;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.gymshop.adapters.ItemsAdapter;
 import com.example.gymshop.models.Item;
 import com.example.gymshop.services.DatabaseService;
+import com.example.gymshop.utils.ImageUtil;
 
-public class Item_Profile extends AppCompatActivity {
+public class Item_Profile extends AppCompatActivity implements View.OnClickListener {
 
     ImageView ivProfile;
     TextView tvItemName, tvItemType, tvItemColor, tvItemLogo, tvItemPrice;
     private DatabaseService databaseService;
 
+    Button btnAddToCart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_profile);
+
+        databaseService = DatabaseService.getInstance();
 
         initViews();
 
@@ -44,11 +43,14 @@ public class Item_Profile extends AppCompatActivity {
         tvItemColor = findViewById(R.id.tvItemColorPr);
         tvItemLogo = findViewById(R.id.tvItemLogoPr);
         tvItemPrice = findViewById(R.id.tvItemPricePr);
+        btnAddToCart=findViewById(R.id.btnAddToCart);
+
+        btnAddToCart.setOnClickListener(this);
     }
 
     private void loadItemDetails(String itemId) {
-        databaseService = DatabaseService.getInstance();
-        databaseService.getItemById(itemId, new DatabaseService.DatabaseCallback<Item>() {
+
+        databaseService.getItem(itemId, new DatabaseService.DatabaseCallback<Item>() {
             @Override
             public void onCompleted(Item item) {
                 if (item != null) {
@@ -60,6 +62,8 @@ public class Item_Profile extends AppCompatActivity {
                     tvItemPrice.setText("מחיר: ₪" + item.getPrice());
 
                     // הצגת התמונה אם קיימת
+
+                    ivProfile.setImageBitmap(ImageUtil.convertFrom64base(item.getPic()));
                     // Glide.with(Item_Profile.this).load(item.getImageUrl()).into(ivProfile);
                 }
             }
@@ -69,5 +73,12 @@ public class Item_Profile extends AppCompatActivity {
                 tvItemName.setText("שגיאה בטעינת הנתונים");
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+
+
+
     }
 }

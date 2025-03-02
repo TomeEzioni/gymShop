@@ -10,15 +10,15 @@ public class Cart {
     /// unique id of the cart
     private String id;
 
-    private final ArrayList<Food> foods;
+    private final ArrayList<Item> items;
 
     public Cart() {
-        foods = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public Cart(String id) {
         this.id = id;
-        foods = new ArrayList<>();
+        items = new ArrayList<>();
     }
 
     public String getId() {
@@ -29,46 +29,46 @@ public class Cart {
         this.id = id;
     }
 
-    public void addFood(Food food) {
-        foods.add(food);
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    public void addFoods(List<Food> foods) {
-        this.foods.addAll(foods);
+    public void addItems(List<Item> items) {
+        this.items.addAll(items);
     }
 
-    public boolean removeFood(Food food) {
-        return foods.remove(food);
+    public boolean removeItem(Item item) {
+        return items.remove(item);
     }
 
-    public Food removeFood(int index) {
-        if (index < 0 || index >= foods.size()) {
+    public Item removeItem(int index) {
+        if (index < 0 || index >= items.size()) {
             return null;
         }
-        return foods.remove(index);
+        return items.remove(index);
     }
 
-    public Food getFood(int index) {
-        if (index < 0 || index >= foods.size()) {
+    public Item getItem(int index) {
+        if (index < 0 || index >= items.size()) {
             return null;
         }
-        return foods.get(index);
+        return items.get(index);
     }
 
-    public ArrayList<Food> getFoods() {
-        return foods;
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public double getTotalPrice() {
         double totalPrice = 0;
-        for (Food food : foods) {
-            totalPrice += food.getPrice();
+        for (Item item : items) {
+            totalPrice += item.getPrice();
         }
         return totalPrice;
     }
 
     public void clear() {
-        foods.clear();
+        items.clear();
     }
 
     @NonNull
@@ -76,7 +76,7 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "id='" + id + '\'' +
-                ", foods=" + foods +
+                ", items=" + items +
                 '}';
     }
 

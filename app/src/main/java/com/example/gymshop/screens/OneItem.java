@@ -1,6 +1,7 @@
 package com.example.gymshop.screens;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +23,13 @@ import com.example.gymshop.Shopping_basket;
 import com.example.gymshop.adapters.ItemsAdapter;
 import com.example.gymshop.models.Cart;
 import com.example.gymshop.models.Item;
+import com.example.gymshop.models.User;
+import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.services.DatabaseService;
+import com.example.gymshop.utils.ImageUtil;
 import com.google.firebase.database.core.Tag;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +43,20 @@ public class OneItem extends AppCompatActivity {
     ArrayList<Item> cartItems = new ArrayList<>();
     private DatabaseService databaseService;
 
+    private static final String CART_PREFS = "CartPrefs";
+    private static final String CART_KEY = "cartItems";
+    public int quantity = 1;
+
+    private Cart cart;
+    private Button cartButton;
+    private TextView totalPriceText;
+
+    AuthenticationService authenticationService;
+    User user=null;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oneitem);
 
@@ -45,22 +64,19 @@ public class OneItem extends AppCompatActivity {
         rcItems.setLayoutManager(new LinearLayoutManager(this));
 
         items = new ArrayList<>();
-        adapter = new ItemsAdapter(items);
+        adapter = new ItemsAdapter(items) ;
+
         rcItems.setAdapter(adapter);
 
         btnCart2 = findViewById(R.id.btn_cart2);
         btnHome = findViewById(R.id.btn_home2);
         btnContact = findViewById(R.id.btn_contact2);
+        fetchCartFromFirebase();
 
         // שמירת המוצר שנבחר לעגלה
-        adapter.setOnItemClickListener(new ItemsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Item item) {
-                addToCart(item);  // הוספת המוצר לעגלה
-            }
-        });
 
-        Intent intent = new Intent(this, Shopping_basket.class);
+
+        Intent intent = new Intent(OneItem.this, Shopping_basket.class);
         intent.putExtra("cartItems", cartItems);
         startActivity(intent);
 
@@ -80,10 +96,44 @@ public class OneItem extends AppCompatActivity {
             }
         });
     }
-s
-    // הוספת פריט לעגלה
+
+    private void fetchCartFromFirebase() {
+
+        databaseService.getCart(AuthenticationService.getInstance().getCurrentUserId(), new DatabaseService.DatabaseCallback<Cart>() {
+            @Override
+            public void onCompleted(Cart cart) {
+                OneItem.this.cart = cart;
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+                cart=new Cart();
+
+            }
+        });
+
+
+    }
+
+
+        // הוספת פריט לעגלה
     private void addToCart(Item item) {
+        // קבלת הרשימה הנוכחית מהזיכרון
+        SharedPreferences sharedPreferences = getSharedPreferences(CART_PREFS, MODE_PRIVATE);
+       // Gson gson = new Gson();
+        String json = sharedPreferences.getString(CART_KEY, "[]");
+
+        //Type type = new TypeToken<ArrayList<Item>>() {}.getType();
+        //ArrayList<Item> cartItems = gson.fromJson(json, type);
+
+        // הוספת המוצר לעגלה
         cartItems.add(item);
+
+        // שמירת העגלה בחזרה ל-SharedPreferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        //editor.putString(CART_KEY, gson.toJson(cartItems));
+        editor.apply();
+
         Toast.makeText(this, item.getName() + " נוסף לעגלה!", Toast.LENGTH_SHORT).show();
     }
 
@@ -110,5 +160,79 @@ s
             Toast.makeText(this, "לא נמצאה אפליקציה לשליחת אימייל", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void Decrease(View view)
+    {
+        if (quantity > 1) { // מונע מספרים שליליים
+            quantity--;
+            updateQuantityDisplay();
+        }
+    }
+
+    public void Increase(View view)
+    {
+        quantity++;
+        updateQuantityDisplay();
+    }
+
+    private void updateQuantityDisplay() {
+        TextView quantityTextView = findViewById(R.id.productQuantity);
+        quantityTextView.setText(String.valueOf(quantity));
+    }
+
+
+    // הוספת מוצר לעגלה
+    public void addItemToCart(Item item) {
+
+
+
+        if(user==null){
+            return;
+        }
+        this.cart.addItem(item);
+
+        Toast.makeText(OneItem.this, "המוצר נוסף לעגלה", Toast.LENGTH_SHORT).show();
+
+
+        databaseService.updateCart(this.cart, user.getId(), new DatabaseService.DatabaseCallback<Void>() {
+            @Override
+            public void onCompleted(Void object) {
+                updateTotalPrice();  // עדכון המחיר הכולל
+
+            }
+
+            @Override
+            public void onFailed(Exception e) {
+
+            }
+        });
+
+    }
+
+
+    //@Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Item item = cartItems.get(position);
+        if (item == null) return;
+
+        // הצגת מידע על המוצר
+       // holder.productName.setText(item.getName());
+       // holder.productPrice.setText("₪" + item.getPrice());
+
+        // הגדרת לחצן הוספה לעגלה
+      // holder.btnAddToCartButton.setOnClickListener(v -> {
+            addItemToCart(item);  // הוספת המוצר שנבחר לעגלה
+       // });
+    }
+
+    // עדכון המחיר הכולל בעגלה
+    private void updateTotalPrice() {
+        double totalPrice = 0;
+        for (Item item : this.cart.getItems()) {
+            totalPrice += item.getPrice();
+        }
+        totalPriceText.setText("סך הכל: ₪" + totalPrice);
+    }
+
 }
 
