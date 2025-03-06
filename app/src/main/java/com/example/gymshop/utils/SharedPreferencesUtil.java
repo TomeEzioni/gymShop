@@ -1,9 +1,16 @@
 package com.example.gymshop.utils;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.gymshop.models.User;
+import com.example.gymshop.screens.Admin_Page;
+import com.example.gymshop.screens.userHomeActivity;
 
 
 /// Utility class for shared preferences operations
@@ -22,7 +29,7 @@ public class SharedPreferencesUtil {
     /// @param value The string to save
     /// @see SharedPreferences.Editor#putString(String, String)
     private static void saveString(Context context, String key, String value) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
         editor.apply();
@@ -35,7 +42,7 @@ public class SharedPreferencesUtil {
     /// @return The string value stored in shared preferences
     /// @see SharedPreferences#getString(String, String)
     private static String getString(Context context, String key, String defaultValue) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getString(key, defaultValue);
     }
 
@@ -45,7 +52,7 @@ public class SharedPreferencesUtil {
     /// @param value The integer to save
     /// @see SharedPreferences.Editor#putInt(String, int)
     private static void saveInt(Context context, String key, int value) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(key, value);
         editor.apply();
@@ -58,7 +65,7 @@ public class SharedPreferencesUtil {
     /// @return The integer value stored in shared preferences
     /// @see SharedPreferences#getInt(String, int)
     private static int getInt(Context context, String key, int defaultValue) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.getInt(key, defaultValue);
     }
 
@@ -68,7 +75,7 @@ public class SharedPreferencesUtil {
     /// @param context The context to use
     /// @see SharedPreferences.Editor#clear()
     public static void clear(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
@@ -79,7 +86,7 @@ public class SharedPreferencesUtil {
     /// @param key The key to remove
     /// @see SharedPreferences.Editor#remove(String)
     private static void remove(Context context, String key) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(key);
         editor.apply();
@@ -91,7 +98,7 @@ public class SharedPreferencesUtil {
     /// @return true if the key exists, false otherwise
     /// @see SharedPreferences#contains(String)
     private static boolean contains(Context context, String key) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         return sharedPreferences.contains(key);
     }
 
@@ -102,7 +109,7 @@ public class SharedPreferencesUtil {
     /// @param user The user object to save
     /// @see User
     public static void saveUser(Context context, User user) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("uid", user.getId());
         editor.putString("email", user.getEmail());
@@ -119,7 +126,7 @@ public class SharedPreferencesUtil {
     /// @see User
     /// @see #isUserLoggedIn(Context)
     public static User getUser(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         // check if user is logged in
         if (!isUserLoggedIn(context)) {
             return null;
@@ -137,7 +144,7 @@ public class SharedPreferencesUtil {
     /// Sign out the user by removing user data from shared preferences
     /// @param context The context to use
     public static void signOutUser(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove("uid");
         editor.remove("email");
@@ -158,4 +165,29 @@ public class SharedPreferencesUtil {
     }
 
 
+    public static void saveUserRole(Context context, String role) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("role", role);
+        editor.apply();
+    }
+
+    // פונקציה לבדיקה האם המשתמש הוא מנהל
+    public static boolean isAdmin(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+        String role = sharedPreferences.getString("role", "user"); // ברירת מחדל: משתמש רגיל
+        return "admin".equals(role);
+    }
+
+    // פונקציה לנווט את המשתמש לעמוד המתאים לפי התפקיד שלו
+    public static void redirectUser(Context context) {
+        Intent intent;
+        if (isAdmin(context)) {
+            intent = new Intent(context, Admin_Page.class);
+        } else {
+            intent = new Intent(context, userHomeActivity.class);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
 }

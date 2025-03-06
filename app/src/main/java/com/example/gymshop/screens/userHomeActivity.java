@@ -13,43 +13,34 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
 
-public class Admin_Page extends AppCompatActivity {
+public class userHomeActivity extends AppCompatActivity {
 
-    Button btnAddItAd,btnUsAd, btnPurAd;
-
+    Button btnHome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin_page);
+        setContentView(R.layout.activity_user_home);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
-    private void initViews()
-    {
-        btnAddItAd = findViewById(R.id.btnAddItemAdmin);
-        btnUsAd = findViewById(R.id.btnUsersAdmin);
-        btnPurAd = findViewById(R.id.btnPurchasesAdmin);
-    }
 
-    public void showUsersAdmin(View view)
+    public void initView()
     {
-        Intent intent = new Intent(Admin_Page.this, ShowUsers.class);
+        btnHome = findViewById(R.id.btnShop);
+    }
+    public void shop(View view)
+    {
+        Intent intent = new Intent(userHomeActivity.this, OneItem.class);
         startActivity(intent);
     }
 
-    public void purchases(View view)
+    public void change(View view)
     {
-        Intent intent = new Intent(Admin_Page.this, purchases.class);
-        startActivity(intent);
-    }
-
-    public void addItem(View view)
-    {
-        Intent intent = new Intent(Admin_Page.this, AddItem.class);
+        Intent intent = new Intent(userHomeActivity.this, changeDetails.class);
         startActivity(intent);
     }
 }

@@ -1,5 +1,8 @@
 package com.example.gymshop.services;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -9,8 +12,10 @@ import com.example.gymshop.models.Item;
 import com.example.gymshop.models.User;
 import com.example.gymshop.models.Cart;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -291,10 +296,6 @@ public class DatabaseService {
         public void updateCart(@NotNull final Cart cart, String uid ,@Nullable final DatabaseCallback<Void> callback) {
             writeData("Users/" + uid+"/cart", cart, callback);
         }
-
-
-
-
 
     }
 

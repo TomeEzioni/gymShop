@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,22 +17,28 @@
         android:theme="@style/Theme.GymShop"
         tools:targetApi="31">
         <activity
-            android:name=".User_item"
+            android:name=".screens.purchases"
             android:exported="false" />
         <activity
-            android:name=".ShowUsers"
+            android:name=".screens.userHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".Admin_Page"
+            android:name=".screens.User_item"
             android:exported="false" />
         <activity
-            android:name=".Item_Profile"
+            android:name=".screens.ShowUsers"
             android:exported="false" />
         <activity
-            android:name=".Viewpaper2"
+            android:name=".screens.Admin_Page"
             android:exported="false" />
         <activity
-            android:name=".Shopping_basket"
+            android:name=".screens.Item_Profile"
+            android:exported="false" />
+        <activity
+            android:name=".screens.Viewpaper2"
+            android:exported="false" />
+        <activity
+            android:name=".screens.Shopping_basket"
             android:exported="false" />
         <activity
             android:name=".screens.AddItem"
@@ -52,8 +62,5 @@
             android:name=".screens.Register"
             android:exported="false" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

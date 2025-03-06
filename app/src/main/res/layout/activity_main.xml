@@ -11,17 +11,15 @@
         android:id="@+id/textView4"
         android:layout_width="360dp"
         android:layout_height="125dp"
-        android:background=""
         android:gravity="center"
         android:text="חנות הכושר שלי"
         android:textColor="@color/black"
         android:textSize="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.063" />
 
     <Button
         android:id="@+id/btnSignIn"

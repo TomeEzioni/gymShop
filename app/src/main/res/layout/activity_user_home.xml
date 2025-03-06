@@ -5,62 +5,59 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.Admin_Page">
+    tools:context=".screens.userHomeActivity">
 
     <TextView
-        android:id="@+id/tvAdmin"
-        android:layout_width="455dp"
-        android:layout_height="191dp"
+        android:id="@+id/tvHome"
+        android:layout_width="389dp"
+        android:layout_height="139dp"
         android:gravity="center"
-        android:text="דף מנהל"
+        android:text="דף משתמש"
         android:textColor="@color/black"
-        android:textSize="90dp"
+        android:textSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.002" />
+        app:layout_constraintVertical_bias="0.018" />
 
     <Button
-        android:id="@+id/btnUsersAdmin"
-        android:layout_width="192dp"
-        android:layout_height="81dp"
-        android:text="משתמשים"
-        android:textSize="30dp"
-        android:onClick="showUsersAdmin"
+        android:id="@+id/btnShop"
+        android:layout_width="149dp"
+        android:layout_height="75dp"
+        android:text="חנות"
+        android:textSize="35dp"
+        android:onClick="shop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.236" />
+        app:layout_constraintVertical_bias="0.265" />
 
     <Button
-        android:id="@+id/btnPurchasesAdmin"
-        android:layout_width="189dp"
-        android:layout_height="85dp"
-        android:onClick="purchases"
-        android:text="רכישות"
-        android:textSize="30dp"
+        android:id="@+id/btnChangeDetails"
+        android:layout_width="148dp"
+        android:layout_height="76dp"
+        android:text="שינוי פרטים"
+        android:textSize="25dp"
+        android:onClick="change"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.359" />
+        app:layout_constraintVertical_bias="0.391" />
 
     <Button
-        android:id="@+id/btnAddItemAdmin"
-        android:layout_width="187dp"
-        android:layout_height="94dp"
-        android:text="הוספת מוצר"
-        android:textSize="30dp"
-        android:onClick="addItem"
+        android:id="@+id/btn"
+        android:layout_width="148dp"
+        android:layout_height="72dp"
+        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.544"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.526" />
 </androidx.constraintlayout.widget.ConstraintLayout>

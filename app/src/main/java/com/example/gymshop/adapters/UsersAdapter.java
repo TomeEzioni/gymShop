@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymshop.R;
 import com.example.gymshop.models.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder>
-{
+public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
-    private List<User> userList;
+    private List<User> userList = new ArrayList<>();
 
-    // Constructor
     public UsersAdapter(List<User> userList) {
         this.userList = userList;
     }
@@ -34,23 +33,32 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User user = userList.get(position);
         holder.nameTextView.setText(user.getfName());
-        holder.ageTextView.setText(String.valueOf(user.getPassword()));
         holder.emailTextView.setText(user.getEmail());
+
+        // שדה זה צריך להיות משהו רלוונטי ולא הסיסמה
+        holder.phoneTextView.setText(user.getPhone());
     }
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        return (userList != null) ? userList.size() : 0;
+    }
+
+    // פונקציה לעדכון הנתונים כאשר הרשימה משתנה
+    public void updateData(List<User> newUsers) {
+        userList.clear();
+        userList.addAll(newUsers);
+        notifyDataSetChanged();
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, ageTextView, emailTextView;
+        TextView nameTextView, emailTextView, phoneTextView;
 
         public UserViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
-            ageTextView = itemView.findViewById(R.id.ageTextView);
             emailTextView = itemView.findViewById(R.id.emailTextView);
+            phoneTextView = itemView.findViewById(R.id.phoneTextView); // עדכן בהתאם לשדה שאתה מציג
         }
     }
 }
