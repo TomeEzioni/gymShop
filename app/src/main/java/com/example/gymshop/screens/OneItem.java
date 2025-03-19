@@ -19,6 +19,7 @@ import com.example.gymshop.R;
 import com.example.gymshop.adapters.ItemsAdapter;
 import com.example.gymshop.models.Cart;
 import com.example.gymshop.models.Item;
+import com.example.gymshop.models.ItemOrder;
 import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.services.DatabaseService;
 
@@ -197,7 +198,9 @@ public class OneItem extends AppCompatActivity {
         if(cart==null)
             cart=new Cart();
 
-        this.cart.addItem(item);
+        ItemOrder itemOrder=new ItemOrder(item,quantity);
+
+        this.cart.getItems().add(itemOrder);
 
 
 
@@ -239,14 +242,6 @@ public class OneItem extends AppCompatActivity {
         // });
     }
 
-    // עדכון המחיר הכולל בעגלה
-    private void updateTotalPrice() {
-        double totalPrice = 0;
-        for (Item item : this.cart.getItems()) {
-            totalPrice += item.getPrice();
-        }
-        totalPriceText.setText("סך הכל: ₪" + totalPrice);
-    }
 
 }
 

@@ -9,61 +9,41 @@ import java.util.List;
 public class Cart implements Serializable {
 
     /// unique id of the cart
-    private String id;
 
-    private final ArrayList<Item> items;
+
+    private final ArrayList<ItemOrder> items;
 
     public Cart() {
         items = new ArrayList<>();
     }
 
-    public Cart(String id) {
-        this.id = id;
-        items = new ArrayList<>();
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void addItem(Item item) {
-        items.add(item);
-    }
-
-    public void addItems(List<Item> items) {
-        this.items.addAll(items);
+    public Cart(ArrayList<ItemOrder> items) {
+        this.items = items;
     }
 
     public boolean removeItem(Item item) {
         return items.remove(item);
     }
 
-    public Item removeItem(int index) {
+    public ItemOrder removeItem(int index) {
         if (index < 0 || index >= items.size()) {
             return null;
         }
         return items.remove(index);
     }
 
-    public Item getItem(int index) {
+    public ItemOrder getItem(int index) {
         if (index < 0 || index >= items.size()) {
             return null;
         }
         return items.get(index);
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
-    }
 
     public double getTotalPrice() {
         double totalPrice = 0;
-        for (Item item : items) {
-            totalPrice += item.getPrice();
+        for (ItemOrder itemOrder : items) {
+            totalPrice += itemOrder.getItem().getPrice()*itemOrder.getAmount();
         }
         return totalPrice;
     }
@@ -72,13 +52,14 @@ public class Cart implements Serializable {
         items.clear();
     }
 
-    @NonNull
+    public ArrayList<ItemOrder> getItems() {
+        return items;
+    }
+
     @Override
     public String toString() {
         return "Cart{" +
-                "id='" + id + '\'' +
-                ", items=" + items +
+                "items=" + items +
                 '}';
     }
-
 }

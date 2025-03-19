@@ -70,7 +70,7 @@ public class changeDetails extends AppCompatActivity {
         // עדכון הנתונים ושמירה
         User updatedUser = new User(
                 SharedPreferencesUtil.getUser(this).getId(),
-                firstName, lastName, phone, address, email, password
+                firstName, lastName, phone, address, email, password,false
         );
 
         SharedPreferencesUtil.saveUser(this, updatedUser);

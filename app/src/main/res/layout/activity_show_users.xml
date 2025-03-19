@@ -9,27 +9,37 @@
 
     <TextView
         android:id="@+id/tvShowUs"
-        android:layout_width="448dp"
-        android:layout_height="167dp"
-        android:text="משתמשים"
-        android:textSize="80dp"
-        android:textColor="@color/black"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="86dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="משתמשים"
+        android:textColor="@color/black"
+        android:textSize="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/UsersRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/searchVUsers"
+        android:layout_width="440dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="166dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/UsersRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/UsersRecyclerView"
-        android:layout_width="449dp"
-        android:layout_height="823dp"
+        android:layout_width="329dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="427dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959" />
+        app:layout_constraintTop_toBottomOf="@+id/searchVUsers" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

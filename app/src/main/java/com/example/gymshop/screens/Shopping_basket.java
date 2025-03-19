@@ -45,8 +45,8 @@ public class Shopping_basket extends AppCompatActivity {
             cart = new Cart();
         }
 
-        adapter = new ItemsAdapter(cart.getItems());
-        rcCart.setAdapter(adapter);
+        //adapter = new ItemsAdapter(cart.getItems());
+        //rcCart.setAdapter(adapter);
     }
 
     public void beyomdPayment(View view) {

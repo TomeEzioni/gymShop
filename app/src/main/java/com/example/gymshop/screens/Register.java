@@ -146,6 +146,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener
                         user.setlName(lname);
                         user.setPhone(phone);
                         user.setAddress(address);
+                        user.setisAdmin(true);
 
                         /// call the createNewUser method of the database service
                         databaseService.createNewUser(user, new DatabaseService.DatabaseCallback<Void>() {

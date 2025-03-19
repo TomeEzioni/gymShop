@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         /// set the click listener
         btnLogin.setOnClickListener(this);
+
+        user=SharedPreferencesUtil.getUser(LoginActivity.this);
         if(user!=null){
 
             etEmail.setText(user.getEmail());
@@ -135,14 +137,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Log.d("TAG", "signInWithEmail:success");
 
 
-                    Intent go = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(go);
 
-                    new AlertDialog.Builder(LoginActivity.this)
-                            .setTitle("התחברות בוצעה בהצלחה!")
-                            .setMessage("אימייל וסיסמה נקלטו בהצלחה.")
-                            .setPositiveButton("אישור", (dialog, which) -> dialog.dismiss())
-                            .show();
+
+//                new AlertDialog.Builder(LoginActivity.this)
+//                        .setTitle("התחברות בוצעה בהצלחה!")
+//                        .setMessage("אימייל וסיסמה נקלטו בהצלחה.")
+//                        .setPositiveButton("אישור", (dialog, which) -> dialog.dismiss())
+//                        .show();
 
 
 
@@ -151,16 +152,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onCompleted(User u) {
                         user = u;
-                        Log.d(TAG, "onCompleted: User data retrieved successfully");
+                        Log.d(TAG, "onCompleted: User data retrieved successfully    "+ user.toString());
                         /// save the user data to shared preferences
                         SharedPreferencesUtil.saveUser(LoginActivity.this, user);
-                        /// Redirect to main activity and clear back stack to prevent user from going back to login screen
-                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-                        /// Clear the back stack (clear history) and start the MainActivity
-                        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(mainIntent);
 
 
+
+                        if(user.isAdmin()){
+
+                            Intent go = new Intent(getApplicationContext(), Admin_Page.class);
+                            startActivity(go);
+                        }
+                       else {
+                            /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+                            Intent mainIntent = new Intent(LoginActivity.this, userHomeActivity.class);
+                            /// Cr the back stack (clear history) and start the MainActivity
+                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(mainIntent);
+
+                        }
 
                     }
 

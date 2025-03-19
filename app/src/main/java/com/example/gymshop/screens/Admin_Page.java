@@ -52,4 +52,10 @@ public class Admin_Page extends AppCompatActivity {
         Intent intent = new Intent(Admin_Page.this, AddItem.class);
         startActivity(intent);
     }
+
+    public void shopAdmin(View view)
+    {
+        Intent intent = new Intent(Admin_Page.this, OneItem.class);
+        startActivity(intent);
+    }
 }
