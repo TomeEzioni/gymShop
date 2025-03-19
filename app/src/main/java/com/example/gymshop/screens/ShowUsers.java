@@ -2,8 +2,11 @@ package com.example.gymshop.screens;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -16,79 +19,79 @@ import com.example.gymshop.adapters.UsersAdapter;
 import com.example.gymshop.models.User;
 import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.services.DatabaseService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ShowUsers extends AppCompatActivity {
 
-    private DatabaseService databaseService;
-    private AuthenticationService authenticationService;
-    private String uid;
-    private User user;
-
     private RecyclerView recyclerView;
-    private UsersAdapter adapter;
-    private ArrayList<User> users = new ArrayList<>();
+    private UsersAdapter usersAdapter;
+    private DatabaseService databaseService;
+    private DatabaseReference myRef;
+    private SearchView userSearchView;
+    private List<User> userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_show_users);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().hide();
+//        }
 
-        // אתחול השירותים
-        databaseService = DatabaseService.getInstance();
-        authenticationService = AuthenticationService.getInstance();
-        uid = authenticationService.getCurrentUserId();
+        databaseService=DatabaseService.getInstance();
 
-        // אתחול ה-RecyclerView
+        // קישור רכיבים מה-XML
+        userSearchView = findViewById(R.id.searchVUsers);
         recyclerView = findViewById(R.id.UsersRecyclerView);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // אתחול המתאם והשמתו לרשימה
-        adapter = new UsersAdapter(users);
-        recyclerView.setAdapter(adapter);
 
-        // טעינת המשתמשים מהמסד נתונים
-        loadUsers();
 
-        // קבלת המשתמש המחובר
-        loadCurrentUser();
+        userList = new ArrayList<>();
+        usersAdapter = new UsersAdapter(userList,userList ,this);
+        recyclerView.setAdapter(usersAdapter);
+
+        // טעינת המשתמשים מהפיירבייס
+        fetchUsers();
+
+        // מאזין לחיפוש משתמשים
+        userSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                usersAdapter.filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                usersAdapter.filter(newText);
+                return false;
+            }
+        });
     }
 
-    private void loadUsers() {
+    private void fetchUsers() {
         databaseService.getUsers(new DatabaseService.DatabaseCallback<List<User>>() {
             @Override
             public void onCompleted(List<User> object) {
-                users.clear();
-                users.addAll(object);
-                adapter.updateData(users); // עדכון ה-RecyclerView
+                userList.clear();;
+                userList.addAll(object);
+                recyclerView.setAdapter(usersAdapter);
+                usersAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void onFailed(Exception e) {
-                Log.e("TAG", "שגיאה בטעינת המשתמשים", e);
-            }
-        });
-    }
 
-    private void loadCurrentUser() {
-        databaseService.getUser(uid, new DatabaseService.DatabaseCallback<User>() {
-            @Override
-            public void onCompleted(User u) {
-                user = u;
-            }
-
-            @Override
-            public void onFailed(Exception e) {
-                Log.e("TAG", "שגיאה בטעינת המשתמש", e);
             }
         });
     }

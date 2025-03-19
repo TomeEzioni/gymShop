@@ -9,9 +9,11 @@ public class User
     String address;
     String email;
     String password;
+    boolean isAdmin;
 
-    public User(String id, String fName, String lName, String phone, String address, String email, String password)
-    {
+
+
+    public User(String id, String fName, String lName, String phone, String address, String email, String password, boolean isAdmin) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -19,6 +21,7 @@ public class User
         this.address = address;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public User()
@@ -95,6 +98,19 @@ public class User
         this.password = password;
     }
 
+    public boolean getisAdmin()
+    {
+        return isAdmin;
+    }
+
+
+    public void setisAdmin(boolean admin) {
+        this.isAdmin = admin;
+    }
+
+
+
+
 
     @Override
     public String toString()
@@ -107,7 +123,15 @@ public class User
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", isAdmin='" + isAdmin + '\'' +
                 '}';
     }
 
+    public void setAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

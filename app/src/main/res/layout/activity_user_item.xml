@@ -4,30 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="100dp"
     android:padding="16dp"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:background="#009688"
+    android:clickable="true"
+    android:focusable="true"
     tools:context=".screens.User_item">
 
 
-    <TextView
-        android:id="@+id/nameTextView"
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+       <TextView
+        android:id="@+id/FirstNamTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Name"
+        android:text="First Name"
         android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/phoneTextView"
+       <TextView
+        android:id="@+id/lastNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email"
+        android:text="Last Name"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/emailTextView"
+       <TextView
+        android:id="@+id/PhoneTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Password"
+        android:text="Phone"
         android:textSize="16sp" />
+    </LinearLayout>
+    <ImageButton
+        android:id="@+id/imageBDeleteUser"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/delete"
+        android:background="#009688"
+        android:padding="8dp"
+        android:contentDescription="Delete User"
+        android:scaleType="centerInside"
+        android:layout_gravity="center_vertical"/>
+
 </LinearLayout>

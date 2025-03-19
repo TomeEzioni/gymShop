@@ -164,18 +164,6 @@ public class DatabaseService {
         writeData("items/" + item.getId(), item, callback);
     }
 
-    /// create a new cart in the database
-    /// @param cart the cart object to create
-    /// @param callback the callback to call when the operation is completed
-    ///               the callback will receive void
-    ///              if the operation fails, the callback will receive an exception
-    /// @return void
-    /// @see DatabaseCallback
-    /// @see Cart
-    public void createNewCart(@NotNull final Cart cart, @Nullable final DatabaseCallback<Void> callback) {
-        writeData("carts/" + cart.getId(), cart, callback);
-    }
-
 
     /// get a user from the database
     /// @param uid the id of the user to get
@@ -211,8 +199,8 @@ public class DatabaseService {
     /// @return void
     /// @see DatabaseCallback
     /// @see Cart
-    public void getCart(@NotNull final String cartId, @NotNull final DatabaseCallback<Cart> callback) {
-        getData("carts/" + cartId, Cart.class, callback);
+    public void getCart(@NotNull final String uid, @NotNull final DatabaseCallback<Cart> callback) {
+        getData("usersCart/" + uid ,Cart.class, callback);
     }
 
     /// generate a new id for a new item in the database
@@ -258,6 +246,17 @@ public class DatabaseService {
         });
     }
 
+    public void deleteUser(String uid, DatabaseCallback<Void> callback) {
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+        userRef.removeValue().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                callback.onCompleted(null);
+            } else {
+                callback.onFailed(task.getException());
+            }
+        });
+    }
+
     /// get all the users from the database
     /// @param callback the callback to call when the operation is completed
     ///              the callback will receive a list of item objects
@@ -294,7 +293,7 @@ public class DatabaseService {
         /// @see DatabaseCallback
         /// @see Cart
         public void updateCart(@NotNull final Cart cart, String uid ,@Nullable final DatabaseCallback<Void> callback) {
-            writeData("Users/" + uid+"/cart", cart, callback);
+            writeData("usersCart/" + uid, cart, callback);
         }
 
     }

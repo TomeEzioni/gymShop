@@ -54,7 +54,6 @@ public class User_item extends AppCompatActivity {
                             User user = document.toObject(User.class);
                             userList.add(user);
                         }
-                        usersAdapter = new UsersAdapter(userList);
                         recyclerView.setAdapter(usersAdapter);
                     }
                     else
