@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:weightSum="1"
+    android:background="@android:color/white">
+
+    <!-- כותרת סל קניות -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="סל קניות"
+        android:textColor="@color/black"
+        android:background="#ADAAAA"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:padding="16dp" />
+
+    <!-- RecyclerView להצגת פריטים בסל -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcvShoppingBasket"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
+
+    <!-- כפתור לביצוע צ'קאאוט -->
+    <Button
+        android:id="@+id/btnBeyondPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="מעבר לתשלום"
+        android:textColor="@color/black"
+        android:backgroundTint="#ADAAAA"
+        android:onClick="beyomdPayment"
+        android:padding="16dp" />
+
+</LinearLayout>
