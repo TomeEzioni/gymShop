@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/btn_cart2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="סל קניות"
+            android:onClick="shoppingBasket"
+            android:src="@drawable/shopping" />
+
+        <Button
+            android:id="@+id/btn_contact2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="contact"
+            android:text="צור קשר" />
+
+        <Button
+        android:id="@+id/btn_home2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:onClick="home"
+        android:text="דף הבית" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+        <Button
+            android:id="@+id/btn_food2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="אוכל"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_fitness2"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:text="מתקני ספורט"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_water_sports2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="ספורט ימי"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_bands2"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:text="רצועות וגומיות"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_weights2"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:text="משקולות וכוח"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_mats2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="מזרני כושר"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_gym_offers2"
+            android:layout_width="65dp"
+            android:layout_height="wrap_content"
+            android:text="הטבות לחדרי כושר"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcItems"
+        android:layout_width="match_parent"
+        android:layout_height="731dp" />
+
+
+</LinearLayout>
