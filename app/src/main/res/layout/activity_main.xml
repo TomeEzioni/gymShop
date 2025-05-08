@@ -48,33 +48,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.281" />
 
-    <Button
-        android:id="@+id/btnSearch"
-        android:layout_width="107dp"
-        android:layout_height="56dp"
-        android:onClick="Search"
-        android:text="חיפוש"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.749" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="163dp"
-        android:layout_height="131dp"
-        android:onClick="show"
-        android:text="הצגת משתמשים"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

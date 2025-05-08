@@ -18,7 +18,7 @@ import com.example.gymshop.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnSingIn, btnConnection, btnSearch;
+    Button btnSingIn, btnConnection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
     {
         btnSingIn = findViewById(R.id.btnSignIn);
         btnConnection = findViewById(R.id.btnConnection);
-        btnSearch = findViewById(R.id.btnSearch);
     }
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
         int id = item.getItemId();
 
        // if (id == R.id.action_search) {
-       //     return true;
+     //       return true;
      //  }
 
         return super.onOptionsItemSelected(item);
@@ -60,14 +60,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Search(View view)
-    {
-        Intent intent = new Intent(MainActivity.this, OneItem.class);
-        startActivity(intent);
-    }
-
-    public void show(View view) {
-        Intent intent = new Intent(MainActivity.this, ShowUsers.class);
-        startActivity(intent);
-    }
 }

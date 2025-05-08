@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1B264F"
     tools:context=".screens.Admin_Page">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="191dp"
         android:gravity="center"
         android:text="דף מנהל"
-        android:textColor="@color/black"
+        android:textColor="#ACE894"
         android:textSize="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +29,8 @@
         android:layout_height="81dp"
         android:text="משתמשים"
         android:textSize="30dp"
+        android:backgroundTint="#172815"
+        android:textColor="#ACE894"
         android:onClick="showUsersAdmin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +46,8 @@
         android:onClick="purchases"
         android:text="רכישות"
         android:textSize="30dp"
+        android:backgroundTint="#172815"
+        android:textColor="#ACE894"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.54"
@@ -56,6 +61,8 @@
         android:layout_height="94dp"
         android:text="הוספת מוצר"
         android:textSize="30dp"
+        android:backgroundTint="#6F1D1B"
+        android:textColor="#ACE894"
         android:onClick="addItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +77,8 @@
         android:layout_height="89dp"
         android:text="חנות"
         android:textSize="40dp"
+        android:backgroundTint="#6F1D1B"
+        android:textColor="#ACE894"
         android:onClick="shopAdmin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,4 +86,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.645" />
+
+    <Button
+        android:id="@+id/btnUpdateDetails"
+        android:layout_width="186dp"
+        android:layout_height="90dp"
+        android:text="עדכון פרטים"
+        android:textSize="31dp"
+        android:backgroundTint="#7D7C7A"
+        android:textColor="#172815"
+        android:onClick="UpdateDetails"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.783" />
 </androidx.constraintlayout.widget.ConstraintLayout>

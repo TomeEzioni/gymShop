@@ -16,8 +16,10 @@ import com.example.gymshop.R;
 public class userHomeActivity extends AppCompatActivity {
 
     Button btnHome;
+    String userId;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_home);
@@ -26,6 +28,13 @@ public class userHomeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("USER_ID"))
+        {
+            userId = intent.getStringExtra("USER_ID");
+        }
+        initView();
     }
 
     public void initView()
@@ -41,6 +50,7 @@ public class userHomeActivity extends AppCompatActivity {
     public void change(View view)
     {
         Intent intent = new Intent(userHomeActivity.this, changeDetails.class);
+        intent.putExtra("USER_ID", userId);
         startActivity(intent);
     }
 }

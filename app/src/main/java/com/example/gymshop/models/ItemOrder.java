@@ -1,11 +1,12 @@
 package com.example.gymshop.models;
 
-public class ItemOrder {
+import java.io.Serializable;
+public class ItemOrder implements Serializable {
 
     Item item;
     int amount;
 
-    public ItemOrder(Item item, int amount) {
+    public ItemOrder(Item item, int amount){
         this.item = item;
         this.amount = amount;
     }

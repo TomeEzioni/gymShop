@@ -1,6 +1,8 @@
 package com.example.gymshop.models;
 
-public class User
+import java.io.Serializable;
+
+public class User implements Serializable
 {
     String id;
     String fName;
@@ -9,11 +11,10 @@ public class User
     String address;
     String email;
     String password;
-    boolean isAdmin;
+    String isAdmin;
 
 
-
-    public User(String id, String fName, String lName, String phone, String address, String email, String password, boolean isAdmin) {
+    public User(String id, String fName, String lName, String phone, String address, String email, String password, String isAdmin) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
@@ -98,23 +99,17 @@ public class User
         this.password = password;
     }
 
-    public boolean getisAdmin()
-    {
+    public String getIsAdmin() {
         return isAdmin;
     }
 
-
-    public void setisAdmin(boolean admin) {
-        this.isAdmin = admin;
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
 
-
-
-
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
                 ", fName='" + fName + '\'' +
@@ -125,13 +120,5 @@ public class User
                 ", password='" + password + '\'' +
                 ", isAdmin='" + isAdmin + '\'' +
                 '}';
-    }
-
-    public void setAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public boolean isAdmin() {
-        return isAdmin;
     }
 }

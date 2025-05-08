@@ -43,7 +43,6 @@ public class Payment extends AppCompatActivity
         monthSpinner = findViewById(R.id.spinnerMonth);
         yearSpinner = findViewById(R.id.spinnerYear);
         payButton = findViewById(R.id.buttonPay);
-
         monthAdapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         monthSpinner.setAdapter(monthAdapter);

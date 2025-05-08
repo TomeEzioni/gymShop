@@ -50,5 +50,4 @@
         android:contentDescription="Delete User"
         android:scaleType="centerInside"
         android:layout_gravity="center_vertical"/>
-
 </LinearLayout>

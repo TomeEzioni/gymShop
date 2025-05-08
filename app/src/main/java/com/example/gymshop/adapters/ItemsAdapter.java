@@ -45,6 +45,8 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             @Override
             public void onAddToCartClick(Item item) {
 
+
+
             }
         };
     }

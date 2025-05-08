@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -20,6 +21,8 @@ import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.services.DatabaseService;
 import com.example.gymshop.utils.SharedPreferencesUtil;
 import com.example.gymshop.utils.Validator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /// Activity for logging in the user
@@ -39,7 +42,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private User user=null;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         /// set the layout for the activity
@@ -69,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             etEmail.setText(user.getEmail());
             etPassword.setText(user.getPassword());
         }
+
     }
 
     @Override
@@ -129,7 +134,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             /// Callback method called when the operation is completed
             /// @param uid the user ID of the user that is logged in
             @Override
-            public void onCompleted(String uid) {
+            public void onCompleted(String uid)
+            {
                 Log.d(TAG, "onCompleted: User logged in successfully");
                 /// get the user data from the database
 
@@ -156,17 +162,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         /// save the user data to shared preferences
                         SharedPreferencesUtil.saveUser(LoginActivity.this, user);
 
+                        String userId = user.getId();
 
+                        if(user.getIsAdmin().equals("true")){
 
-                        if(user.isAdmin()){
-
-                            Intent go = new Intent(getApplicationContext(), Admin_Page.class);
-                            startActivity(go);
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null)
+                            {
+                                userId = user.getUid();
+                                Intent intent = new Intent(LoginActivity.this, Admin_Page.class);
+                                intent.putExtra("USER_ID", userId);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                        else {
-                            /// Redirect to main activity and clear back stack to prevent user from going back to login screen
+
                             Intent mainIntent = new Intent(LoginActivity.this, userHomeActivity.class);
-                            /// Cr the back stack (clear history) and start the MainActivity
+                            mainIntent.putExtra("USER_ID", userId);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);
 

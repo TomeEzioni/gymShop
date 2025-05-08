@@ -21,7 +21,6 @@ import java.util.List;
 /// @see Item
 /// @see R.layout#item_selected_item
 public class ItemSpinnerAdapter extends ArrayAdapter<Item> {
-
     /// inflater for the layout
     /// @see LayoutInflater
     private final LayoutInflater inflater;

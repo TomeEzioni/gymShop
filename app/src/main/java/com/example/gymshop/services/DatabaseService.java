@@ -5,6 +5,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 import android.content.Intent;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
@@ -12,6 +13,8 @@ import com.example.gymshop.models.Item;
 import com.example.gymshop.models.User;
 import com.example.gymshop.models.Cart;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -247,14 +250,14 @@ public class DatabaseService {
     }
 
     public void deleteUser(String uid, DatabaseCallback<Void> callback) {
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
-        userRef.removeValue().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                callback.onCompleted(null);
-            } else {
-                callback.onFailed(task.getException());
+
+        databaseReference.child("Users/"+uid).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
             }
         });
+
     }
 
     /// get all the users from the database
@@ -294,6 +297,13 @@ public class DatabaseService {
         /// @see Cart
         public void updateCart(@NotNull final Cart cart, String uid ,@Nullable final DatabaseCallback<Void> callback) {
             writeData("usersCart/" + uid, cart, callback);
+        }
+
+        public void updateUser(String userId, User user, DatabaseCallback<Void> callback){
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        userRef.setValue(user)
+                .addOnSuccessListener(aVoid -> callback.onCompleted(null))
+                .addOnFailureListener(callback::onFailed);
         }
 
     }
