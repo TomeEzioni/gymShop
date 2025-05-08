@@ -117,7 +117,7 @@ public class SharedPreferencesUtil {
         editor.putString("fName", user.getfName());
         editor.putString("lName", user.getlName());
         editor.putString("phone", user.getPhone());
-        editor.putBoolean("isAdmin", user.isAdmin());
+        editor.putString("isAdmin", user.getIsAdmin());
         editor.apply();
     }
 
@@ -139,7 +139,7 @@ public class SharedPreferencesUtil {
         String lName = sharedPreferences.getString("lName", "");
         String phone = sharedPreferences.getString("phone", "");
         String address = sharedPreferences.getString("address", "");
-        boolean isAdmin = sharedPreferences.getBoolean("isAdmin",false);
+        String isAdmin = sharedPreferences.getString("isAdmin","false");
         return new User(uid, fName, lName, phone,address,email, password,isAdmin);
     }
 

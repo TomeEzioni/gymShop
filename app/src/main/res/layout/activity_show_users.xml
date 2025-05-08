@@ -1,45 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.ShowUsers">
+    tools:context=".screens.ShowUsers"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvShowUs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="86dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="משתמשים"
         android:textColor="@color/black"
         android:textSize="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/UsersRecyclerView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.008" />
 
     <SearchView
         android:id="@+id/searchVUsers"
-        android:layout_width="440dp"
-        android:layout_height="85dp"
-        android:layout_marginTop="166dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/UsersRecyclerView"
+        android:layout_width="387dp"
+        android:layout_height="77dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.639"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.208" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/UsersRecyclerView"
-        android:layout_width="329dp"
-        android:layout_height="300dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginBottom="427dp"
+        android:layout_width="371dp"
+        android:layout_height="592dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchVUsers" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

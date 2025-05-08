@@ -1,7 +1,10 @@
 package com.example.gymshop.screens;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.gymshop.R;
 import com.example.gymshop.adapters.UsersAdapter;
 import com.example.gymshop.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -27,6 +32,7 @@ public class User_item extends AppCompatActivity {
     UsersAdapter usersAdapter;
     List<User> userList;
     FirebaseFirestore firestore;
+    ImageButton ibDelete;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -37,39 +43,11 @@ public class User_item extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.UsersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ibDelete = findViewById(R.id.imageBDeleteUser);
 
         // יצירת רשימה של משתמשים
         firestore = FirebaseFirestore.getInstance();
         userList = new ArrayList<>();
 
-        // שליפת נתונים מ-Firebase
-        firestore.collection("users")
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots ->
-                {
-                    if (!queryDocumentSnapshots.isEmpty())
-                    {
-                        for (QueryDocumentSnapshot document : queryDocumentSnapshots)
-                        {
-                            User user = document.toObject(User.class);
-                            userList.add(user);
-                        }
-                        recyclerView.setAdapter(usersAdapter);
-                    }
-                    else
-                    {
-                        Toast.makeText(User_item.this, "No users found", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e ->
-                {
-                    Toast.makeText(User_item.this, "Error fetching data", Toast.LENGTH_SHORT).show();
-                });
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 }

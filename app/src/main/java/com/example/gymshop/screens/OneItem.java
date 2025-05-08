@@ -200,12 +200,12 @@ public class OneItem extends AppCompatActivity {
 
         ItemOrder itemOrder=new ItemOrder(item,quantity);
 
-        this.cart.getItems().add(itemOrder);
+        cart.getItems().add(itemOrder);
 
 
 
 
-        databaseService.updateCart(this.cart, uid, new DatabaseService.DatabaseCallback<Void>() {
+        databaseService.updateCart(cart, uid, new DatabaseService.DatabaseCallback<Void>() {
             @Override
             public void onCompleted(Void object) {
 
