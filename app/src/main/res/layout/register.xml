@@ -1,129 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E1CA96"
     tools:context=".screens.Register">
-
 
         <TextView
             android:id="@+id/tvEnrollment"
             android:layout_width="280dp"
-            android:layout_height="91dp"
-            android:layout_marginBottom="17dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="הרשמה"
-            android:textSize="70dp"
-            android:textColor="@color/black"
+            android:textColor="#0A0F0D"
+            android:textSize="60dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.052" />
+            app:layout_constraintVertical_bias="0.05" />
 
-        <EditText
-            android:id="@+id/etFirstName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="שם פרטי"
-            android:inputType="textPersonName"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.255" />
+            app:layout_constraintTop_toBottomOf="@+id/tvEnrollment">
 
-        <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="שם משפחה"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.362" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="24dp">
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint=" סיסמה (מעל 6 ספרות) "
-            android:inputType="textPassword"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.807" />
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardPersonalInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="24dp"
+                            app:cardBackgroundColor="#9BD1E5"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint=" מספר טלפון (05)  "
-            android:inputType="phone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.476" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
 
-        <EditText
-            android:id="@+id/etAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint=" כתובת (רחוב, מספר בית, עיר) "
-            android:inputType="text"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.587" />
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="8dp"
+                                            android:gravity="end"
+                                            android:text="פרטים אישיים"
+                                            android:textColor="#746F72"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/etEmail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint=" אימייל (@) "
-            android:inputType="textEmailAddress"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.693" />
+                                        <EditText
+                                            android:id="@+id/etFirstName"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="8dp"
+                                            android:background="@android:color/white"
+                                            android:hint="שם פרטי"
+                                            android:inputType="textPersonName"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="144dp"
-            android:layout_height="71dp"
-            android:backgroundTint="#009688"
-            android:text="הירשם"
-            android:textColor="#121212"
-            android:textSize="40dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959" />
+                                        <EditText
+                                            android:id="@+id/etLastName"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="12dp"
+                                            android:background="@android:color/white"
+                                            android:hint="שם משפחה"
+                                            android:inputType="textPersonName"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
 
+                                        <EditText
+                                            android:id="@+id/etPhone"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="12dp"
+                                            android:background="@android:color/white"
+                                            android:hint=" מספר טלפון (05) "
+                                            android:inputType="phone"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
+                                </LinearLayout>
+                        </androidx.cardview.widget.CardView>
 
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardContactInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="24dp"
+                            app:cardBackgroundColor="#9BD1E5"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardPersonalInfo">
 
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="8dp"
+                                            android:gravity="end"
+                                            android:text="פרטי קשר"
+                                            android:textColor="#746F72"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
+
+                                        <EditText
+                                            android:id="@+id/etAddress"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="8dp"
+                                            android:background="@android:color/white"
+                                            android:hint=" כתובת (רחוב, מספר בית, עיר) "
+                                            android:inputType="text"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
+
+                                        <EditText
+                                            android:id="@+id/etEmail"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="12dp"
+                                            android:background="@android:color/white"
+                                            android:hint=" אימייל (@) "
+                                            android:inputType="textEmailAddress"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
+                                </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardSecurity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="24dp"
+                            app:cardBackgroundColor="#9BD1E5"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="4dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardContactInfo">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginBottom="8dp"
+                                            android:gravity="end"
+                                            android:text="אבטחה"
+                                            android:textColor="#746F72"
+                                            android:textSize="18sp"
+                                            android:textStyle="bold" />
+
+                                        <EditText
+                                            android:id="@+id/etPassword"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="55dp"
+                                            android:layout_marginTop="8dp"
+                                            android:background="@android:color/white"
+                                            android:hint=" סיסמה (מעל 6 ספרות) "
+                                            android:inputType="textPassword"
+                                            android:paddingStart="12dp"
+                                            android:paddingEnd="12dp"
+                                            android:textColor="#0A0F0D"
+                                            android:textColorHint="#746F72" />
+                                </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/btnRegister"
+                            android:layout_width="0dp"
+                            android:layout_height="70dp"
+                            android:layout_marginStart="64dp"
+                            android:layout_marginTop="24dp"
+                            android:layout_marginEnd="64dp"
+                            android:backgroundTint="#04A777"
+                            android:text="הירשם"
+                            android:textColor="#FFFFFF"
+                            android:textSize="32dp"
+                            android:textStyle="bold"
+                            app:cornerRadius="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cardSecurity" />
+
+                        <TextView
+                            android:id="@+id/tvLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="כבר יש לך חשבון? לחץ כאן להתחברות"
+                            android:textColor="#746F72"
+                            android:textSize="16sp"
+                            android:onClick="goToLogin"
+                            app:layout_constraintEnd_toEndOf="@+id/btnRegister"
+                            app:layout_constraintStart_toStartOf="@+id/btnRegister"
+                            app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

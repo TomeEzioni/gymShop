@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
+import com.example.gymshop.services.AuthenticationService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -59,7 +60,7 @@ public class Admin_Page extends AppCompatActivity {
 
     public void purchases(View view)
     {
-        Intent intent = new Intent(Admin_Page.this, purchases.class);
+        Intent intent = new Intent(Admin_Page.this, AllOrders.class);
         startActivity(intent);
     }
 
@@ -72,6 +73,7 @@ public class Admin_Page extends AppCompatActivity {
     public void shopAdmin(View view)
     {
         Intent intent = new Intent(Admin_Page.this, OneItem.class);
+        intent.putExtra("username", AuthenticationService.getInstance().getCurrentUsername());
         startActivity(intent);
     }
 

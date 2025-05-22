@@ -25,6 +25,16 @@ public class User implements Serializable
         this.isAdmin = isAdmin;
     }
 
+    public User(User user) {
+        this.id = user.id;
+        this.fName = user.fName;
+        this.lName = user.lName;
+        this.phone = user.phone;
+        this.address = user.address;
+        this.email = user.email;
+
+    }
+
     public User()
     {
     }

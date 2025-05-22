@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#E1CA96"
     tools:context=".screens.LoginActivity">
 
     <TextView
@@ -12,81 +13,131 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="התחברות"
+        android:textColor="#0A0F0D"
         android:textSize="70dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08" />
 
-    <TextView
-        android:id="@+id/tvUserName"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/loginCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="אימייל:"
-        android:textSize="20sp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:cardBackgroundColor="#9BD1E5"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintTop_toBottomOf="@+id/tvConnection"
+        app:layout_constraintVertical_bias="0.15">
 
-    <TextView
-        android:id="@+id/tvPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="סיסמה:"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.896"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.536" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-    <EditText
-        android:id="@+id/etCemail"
-        android:layout_width="248dp"
-        android:layout_height="51dp"
-        android:ems="10"
-        android:hint="אימייל (@)"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.196"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.373" />
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="אימייל:"
+                android:textColor="#0A0F0D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etCpassword"
-        android:layout_width="247dp"
-        android:layout_height="49dp"
-        android:ems="10"
-        android:hint=" סיסמה (מעל 6 ספרות) "
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.542" />
+            <EditText
+                android:id="@+id/etCemail"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint="אימייל (@)"
+                android:inputType="textEmailAddress"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#746F72"
+                android:textColorHint="#746F72"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
+
+            <TextView
+                android:id="@+id/tvPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="סיסמה:"
+                android:textColor="#0A0F0D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etCemail" />
+
+            <EditText
+                android:id="@+id/etCpassword"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/white"
+                android:ems="10"
+                android:hint=" סיסמה (מעל 6 ספרות) "
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:textColor="#746F72"
+                android:textColorHint="#746F72"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btConnect"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:backgroundTint="#04A777"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:text="התחבר"
-        android:textSize="40dp"
+        android:textColor="#FFFFFF"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:cornerRadius="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.827" />
+        app:layout_constraintTop_toBottomOf="@+id/loginCard"
+        app:layout_constraintVertical_bias="0.22"
+        app:layout_constraintWidth_percent="0.7" />
 
+    <TextView
+        android:id="@+id/tvSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="אין לך חשבון? הירשם עכשיו"
+        android:onClick="goToRegister"
+        android:textColor="#746F72"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/btConnect"
+        app:layout_constraintStart_toStartOf="@+id/btConnect"
+        app:layout_constraintTop_toBottomOf="@+id/btConnect" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

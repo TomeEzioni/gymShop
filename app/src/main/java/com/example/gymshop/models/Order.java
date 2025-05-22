@@ -1,61 +1,113 @@
 package com.example.gymshop.models;
 
-import com.example.gymshop.models.Item;
-
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
 
-public class Order
-{
-    String id;
-    User User;
-    List<com.example.gymshop.models.Item> items;
+public class Order implements Serializable {
+    private String orderId;
+    private List<ItemOrder> items;
+    private double totalPrice;
+    private String status;
 
-    public Order(String id, com.example.gymshop.models.User user, List<Item> items) {
-        this.id = id;
-        User = user;
+    private User user;
+
+    private long timestamp;
+
+    public Order(String orderId, List<ItemOrder> items, double totalPrice, String status, User user, long timestamp) {
+        this.orderId = orderId;
         this.items = items;
-    }
-
-    public Order()
-    {
-    }
-
-    public com.example.gymshop.models.User getUser() {
-        return User;
-    }
-
-    public void setUser(com.example.gymshop.models.User user) {
-        User = user;
-    }
-
-    public String getId()
-    {
-        return id;
-    }
-
-    public void setId(String id)
-    {
-        this.id = id;
+        this.totalPrice = totalPrice;
+        this.status = status;
+        this.user = user;
+        this.timestamp = timestamp;
     }
 
 
 
+    public Order() {
+    }
 
-    public List<com.example.gymshop.models.Item> getItems()
-    {
+    private double calculateTotalPrice() {
+        double sum = 0;
+        for (ItemOrder item : items) {
+            sum += item.getItem().getPrice()*item.getAmount();
+        }
+        return sum;
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public List<ItemOrder> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setItems(List<ItemOrder> items) {
         this.items = items;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getFormattedTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date(this.timestamp));
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        return sdf.format(new Date(this.timestamp));
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "id='" + id + '\'' +
-                ", User=" + User +
+                "orderId='" + orderId + '\'' +
                 ", items=" + items +
+                ", totalPrice=" + totalPrice +
+                ", status='" + status + '\'' +
+                ", user=" + user +
+                ", timestamp=" + timestamp +
                 '}';
     }
 }

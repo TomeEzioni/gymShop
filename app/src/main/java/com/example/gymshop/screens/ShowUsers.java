@@ -66,7 +66,8 @@ public class ShowUsers extends AppCompatActivity {
         fetchAllUsers();
 
         //‑‑ 6.‑ האזנה לחיפוש
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
             @Override
             public boolean onQueryTextSubmit(String query) {   // לחיצה על Search
                 filterUsers(query);

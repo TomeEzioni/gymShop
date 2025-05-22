@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
+import com.example.gymshop.services.AuthenticationService;
 
 public class userHomeActivity extends AppCompatActivity {
 
@@ -44,6 +45,7 @@ public class userHomeActivity extends AppCompatActivity {
     public void shop(View view)
     {
         Intent intent = new Intent(userHomeActivity.this, OneItem.class);
+        intent.putExtra("username", AuthenticationService.getInstance().getCurrentUsername());
         startActivity(intent);
     }
 

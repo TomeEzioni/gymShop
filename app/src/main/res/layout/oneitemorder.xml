@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+
+    <ImageView
+        android:id="@+id/product_imageItemOrder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="19dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/product_sizeItemOrder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- מידה למעלה -->
+
+    <!-- שם המוצר -->
+
+    <!-- מחיר -->
+    <TextView
+        android:id="@+id/product_sizeItemOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="69dp"
+        android:text="Size"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/product_nameItemOrder"
+        app:layout_constraintEnd_toStartOf="@+id/product_priceItemOrder"
+        app:layout_constraintStart_toEndOf="@+id/product_imageItemOrder"
+        app:layout_constraintTop_toTopOf="@+id/product_nameItemOrder"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/product_nameItemOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="11dp"
+        android:text="Product Name"
+
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/product_priceItemOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/product_priceItemOrder"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="59dp"
+        android:text="Price"
+
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/product_sizeItemOrder"
+        app:layout_constraintTop_toBottomOf="@+id/product_nameItemOrder" />
+
+    <TextView
+        android:id="@+id/product_AmountItemOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="59dp"
+        android:text="Price"
+
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.26"
+        app:layout_constraintStart_toEndOf="@+id/product_sizeItemOrder"
+        app:layout_constraintTop_toBottomOf="@+id/product_nameItemOrder"
+        app:layout_constraintVertical_bias="0.627" />
+
+
+    <!-- פלוס - כמות - מינוס -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

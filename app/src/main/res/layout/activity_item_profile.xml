@@ -5,101 +5,303 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#E1CA96"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context="screens.Item_Profile">
 
-    <!-- תמונת המוצר -->
-    <ImageView
-        android:id="@+id/ivItemImagePr"
+    <!-- Product Image Card -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_corners_light"
-        android:layout_weight="0.4" /> <!-- תמונה שתקבל 40% מהגודל של המסך -->
+        android:layout_weight="0.3"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
 
-    <!-- שם המוצר -->
+        <ImageView
+            android:id="@+id/ivItemImagePr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal"
+            android:background="#9BD1E5" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Product Name -->
     <TextView
         android:id="@+id/tvItemName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="שם המוצר"
-        android:textSize="22sp"
+        android:textSize="26sp"
         android:textStyle="bold"
-        android:textColor="#333333"
-        android:layout_marginTop="16dp"
+        android:textColor="#0A0F0D"
+        android:layout_marginTop="12dp"
         android:gravity="center"
-        android:padding="8dp"
+        android:padding="4dp"
         tools:text="כפפות כושר"/>
 
-    <!-- תיאור המוצר -->
-
-    <!-- כפתור הוספה לעגלה -->
-    <LinearLayout
+    <!-- Product Details Card -->
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_weight="0.22"
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#9BD1E5"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="right"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="פרטי המוצר"
+                android:textColor="#0A0F0D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvItemTypePr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="סוג: "
+                android:textColor="#746F72"
+                android:textSize="18sp"
+                tools:text="סוג: אביזרי כושר" />
+
+            <TextView
+                android:id="@+id/tvItemColorPr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="צבע: "
+                android:textColor="#746F72"
+                android:textSize="18sp"
+                tools:text="צבע: שחור" />
+
+            <TextView
+                android:id="@+id/tvItemLogoPr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="מותג: "
+                android:textColor="#746F72"
+                android:textSize="18sp"
+                tools:text="מותג: Nike" />
+
+            <TextView
+                android:id="@+id/tvItemPricePr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="מחיר: ₪"
+                android:textColor="#04A777"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="מחיר: ₪199" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Rating and Reviews Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="0.4"
-        android:background="@drawable/rounded_corners_light"
-        android:orientation="vertical"
-        android:gravity="right"
-        android:padding="16dp"> <!-- ייתן לחלק הזה 40% מהמסך -->
+        android:layout_marginTop="12dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="#9BD1E5"
+        app:cardElevation="4dp">
 
-        <TextView
-            android:id="@+id/tvItemTypePr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="סוג: "
-            android:textColor="#666666"
-            android:textSize="18sp"
-            tools:text="סוג: אביזרי כושר" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="right"
+            android:padding="12dp">
 
-        <TextView
-            android:id="@+id/tvItemColorPr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="צבע: "
-            android:textColor="#666666"
-            android:textSize="18sp"
-            tools:text="צבע: שחור" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="דירוג ותגובות"
+                android:textColor="#0A0F0D"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
 
-        <TextView
-            android:id="@+id/tvItemLogoPr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="מותג: "
-            android:textColor="#666666"
-            android:textSize="18sp"
-            tools:text="מותג: Nike" />
+            <!-- Rating Bar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right"
+                android:layout_marginBottom="8dp">
 
-        <TextView
-            android:id="@+id/tvItemPricePr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="מחיר: ₪"
-            android:textColor="#FF5722"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            tools:text="מחיר: ₪199" />
+                <TextView
+                    android:id="@+id/tvRatingValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#746F72"
+                    android:textSize="16sp"
+                    android:layout_marginStart="8dp"
+                    tools:text="4.5" />
 
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:rating="4.5"
+                    android:layout_marginStart="4dp"/>
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="דירוג: "
+                    android:textColor="#746F72"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="4dp"/>
+            </LinearLayout>
 
+            <!-- Reviews ListView -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="תגובות משתמשים"
+                android:textColor="#0A0F0D"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"/>
+
+            <ListView
+                android:id="@+id/listViewReviews"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:divider="#E0E0E0"
+                android:dividerHeight="1dp"
+                android:padding="4dp"
+                android:layout_marginBottom="8dp" />
+
+            <!-- Add Your Rating -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <RatingBar
+                    android:id="@+id/userRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:numStars="5"
+                    android:stepSize="1.0"
+                    android:isIndicator="false"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="דרג: "
+                    android:textColor="#746F72"
+                    android:textSize="16sp"
+                    android:layout_marginEnd="4dp"/>
+            </LinearLayout>
+
+            <!-- Button to add review -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnAddReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="#04A777"
+                    android:text="הוסף תגובה"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    app:cornerRadius="8dp" />
+
+                <EditText
+                    android:id="@+id/etReviewText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:drawable/edit_text"
+                    android:hint="כתוב תגובה כאן..."
+                    android:padding="8dp"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Add to Cart Button -->
     <Button
         android:id="@+id/btnAddToCart"
-        android:layout_width="308dp"
-        android:layout_height="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="#FF9800"
-        android:padding="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="32dp"
+        android:backgroundTint="#04A777"
+        android:padding="8dp"
         android:text="הוסף לעגלה"
         android:textColor="#FFFFFF"
-        android:textSize="18sp" />
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="12dp"/>
+
+    <!-- Additional Actions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="6dp">
+
+        <TextView
+            android:id="@+id/tvAddToWishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הוסף למועדפים"
+            android:textColor="#746F72"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:drawablePadding="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="|"
+            android:textColor="#746F72"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/tvShareProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שתף מוצר"
+            android:textColor="#746F72"
+            android:padding="6dp"
+            android:textSize="16sp"
+            android:drawablePadding="4dp"/>
+    </LinearLayout>
 </LinearLayout>

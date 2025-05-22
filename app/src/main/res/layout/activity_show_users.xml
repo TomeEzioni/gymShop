@@ -8,42 +8,69 @@
     tools:context=".screens.ShowUsers"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#E1CA96">
 
+    <!-- Page Title -->
     <TextView
         android:id="@+id/tvShowUs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="משתמשים"
-        android:textColor="@color/black"
-        android:textSize="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008" />
+        android:textColor="#0A0F0D"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 
-    <SearchView
-        android:id="@+id/searchVUsers"
-        android:layout_width="387dp"
-        android:layout_height="77dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.639"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.208" />
+    <!-- Search Bar -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#9BD1E5"
+        android:layout_marginBottom="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/UsersRecyclerView"
-        android:layout_width="371dp"
-        android:layout_height="592dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.918" />
+        <SearchView
+            android:id="@+id/searchVUsers"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="חפש משתמשים..."
+            android:background="@android:color/transparent"
+            android:queryBackground="@android:color/transparent"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Users List -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#9BD1E5">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/UsersRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:clipToPadding="false"/>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Add User Button -->
+    <Button
+        android:id="@+id/btnAddUser"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="הוסף משתמש חדש"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="#04A777"
+        android:layout_marginTop="16dp"
+        app:cornerRadius="12dp"/>
 
 </LinearLayout>

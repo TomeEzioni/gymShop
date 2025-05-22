@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +23,8 @@ import com.example.gymshop.R;
 
 public class Payment extends AppCompatActivity
 {
-
     EditText identityCardEditText, nameEditText, cardNumberEditText, cvvEditText;
+    TextView priceTextView;
     Spinner monthSpinner, yearSpinner;
     Button payButton;
     ImageButton bit, payBox, payPal;
@@ -41,17 +42,17 @@ public class Payment extends AppCompatActivity
             return insets;
         });
 
-
         identityCardEditText = findViewById(R.id.editTextIdentityCard);
         nameEditText = findViewById(R.id.editTextName);
         cardNumberEditText = findViewById(R.id.editTextCardNumber);
         cvvEditText = findViewById(R.id.editTextCVV);
+        priceTextView = findViewById(R.id.textViewPriceValue);
         monthSpinner = findViewById(R.id.spinnerMonth);
         yearSpinner = findViewById(R.id.spinnerYear);
         payButton = findViewById(R.id.buttonPay);
         bit = findViewById(R.id.ibBit);
         payPal = findViewById(R.id.ibPayPal);
-        payBox =findViewById(R.id.ibPayBox);
+        payBox = findViewById(R.id.ibPayBox);
 
         monthAdapter = ArrayAdapter.createFromResource(this, R.array.months_array, android.R.layout.simple_spinner_item);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -75,14 +76,39 @@ public class Payment extends AppCompatActivity
                 String month = monthSpinner.getSelectedItem().toString();
                 String year = yearSpinner.getSelectedItem().toString();
 
+                // בדיקה שכל השדות מלאים
                 if (identityCard.isEmpty() || fullName.isEmpty() || cardNumber.isEmpty() || cvv.isEmpty() || month.isEmpty() || year.isEmpty())
                 {
                     Toast.makeText(Payment.this, "אנא מלא את כל השדות", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else
-                {
-                    Toast.makeText(Payment.this, "התשלום בוצע בהצלחה!", Toast.LENGTH_LONG).show();
+
+                // בדיקת תעודת זהות - חייבת להיות 9 ספרות
+                if (identityCard.length() != 9) {
+                    Toast.makeText(Payment.this, "תעודת זהות חייבת להכיל 9 ספרות בדיוק", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                // בדיקת מספר כרטיס אשראי - לא פחות מ-16 ספרות
+                if (cardNumber.length() < 16) {
+                    Toast.makeText(Payment.this, "מספר כרטיס האשראי קצר מדי, נדרשות לפחות 16 ספרות", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // בדיקת מספר כרטיס אשראי - לא מעל מ-16 ספרות
+                if (cardNumber.length() > 16) {
+                    Toast.makeText(Payment.this, "מספר כרטיס האשראי גדול מדי, נדרשות מינימום 16 ספרות", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // בדיקת CVV - חייב להיות בדיוק 3 ספרות
+                if (cvv.length() != 3) {
+                    Toast.makeText(Payment.this, "קוד CVV חייב להכיל 3 ספרות בדיוק", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // אם כל הבדיקות עברו בהצלחה
+                Toast.makeText(Payment.this, "התשלום בוצע בהצלחה!", Toast.LENGTH_LONG).show();
             }
         });
 

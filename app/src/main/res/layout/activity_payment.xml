@@ -7,52 +7,78 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FFFFFF"
+    android:background="#E1CA96"
     android:weightSum="1">
 
     <!-- כותרת תשלום -->
-
-    <!-- תעודת זהות -->
     <TextView
         android:id="@+id/textView"
-        android:layout_width="432dp"
-        android:layout_height="254dp"
-        android:layout_marginBottom="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="תשלום"
-        android:textColor="@color/black"
-        android:textSize="80dp"
-        android:textStyle="bold" />
+        android:textColor="@color/white"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        android:background="#0A0F0D"
+        android:padding="16dp"
+        android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/editTextIdentityCard"
+    <!-- תעודת זהות -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="תעודת זהות"
-        android:padding="10dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="16dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/editTextIdentityCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="תעודת זהות"
+            android:inputType="number"
+            android:textColor="#0A0F0D"
+            android:textColorHint="#746F72"
+            android:padding="16dp"
+            android:background="#9BD1E5"/>
+    </LinearLayout>
 
     <!-- שם מלא -->
-    <EditText
-        android:id="@+id/editTextName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="שם מלא"
-        android:padding="10dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="16dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="שם מלא"
+            android:textColor="#0A0F0D"
+            android:textColorHint="#746F72"
+            android:padding="16dp"
+            android:background="#9BD1E5"/>
+    </LinearLayout>
 
     <!-- מספר כרטיס -->
-    <EditText
-        android:id="@+id/editTextCardNumber"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="מספר כרטיס"
-        android:inputType="number"
-        android:padding="10dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="16dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <EditText
+            android:id="@+id/editTextCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="מספר כרטיס"
+            android:inputType="number"
+            android:textColor="#0A0F0D"
+            android:textColorHint="#746F72"
+            android:padding="16dp"
+            android:background="#9BD1E5"/>
+    </LinearLayout>
 
     <!-- ליניאר לאוריינטציה אופקית עבור החודש והשנה -->
     <LinearLayout
@@ -62,84 +88,146 @@
         android:layout_marginBottom="16dp">
 
         <!-- Spinner חודש -->
-        <Spinner
-            android:id="@+id/spinnerMonth"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:spinnerMode="dropdown"
-            android:entries="@array/months_array"/>
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinnerMonth"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="חודש"
+                android:textColor="#0A0F0D"
+                android:textColorHint="#746F72"
+                android:background="#9BD1E5"
+                android:padding="12dp"/>
+        </LinearLayout>
 
         <!-- Spinner שנה -->
-        <Spinner
-            android:id="@+id/spinnerYear"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:spinnerMode="dropdown"
-            android:entries="@array/years_array"
-            />
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinnerYear"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="שנה"
+                android:textColor="#0A0F0D"
+                android:textColorHint="#746F72"
+                android:background="#9BD1E5"
+                android:padding="12dp"/>
+        </LinearLayout>
     </LinearLayout>
 
     <!-- CVV -->
-    <EditText
-        android:id="@+id/editTextCVV"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="@android:drawable/edit_text"
-        android:hint="CVV"
-        android:inputType="numberPassword"
-        android:padding="10dp" />
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
 
-    <!-- כפתור תשלום -->
-    <Button
-        android:id="@+id/buttonPay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="בצע תשלום"
-        android:background="@android:color/holo_green_dark"
-        android:textColor="#FFFFFF"
-        android:padding="12dp"
-        android:layout_marginTop="16dp" />
+        <EditText
+            android:id="@+id/editTextCVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="CVV"
+            android:inputType="numberPassword"
+            android:textColor="#0A0F0D"
+            android:textColorHint="#746F72"
+            android:padding="16dp"
+            android:background="#9BD1E5"/>
+    </LinearLayout>
 
+    <!-- מחיר לתשלום - שורשמת במרכז -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginTop="8dp">
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/textViewPriceValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="₪120.00"
+            android:textColor="#04A777"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewPriceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מחיר לתשלום:"
+            android:textColor="#0A0F0D"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="בצע תשלום"
+        android:background="#04A777"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:padding="12dp"/>
+
+    <!-- תשלום באמצעות -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="תשלום באמצעות"
+        android:textColor="#0A0F0D"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- מערכות תשלום -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/ibBit"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/bit"
-            android:background="@null"
+            android:background="#E1CA96"
             android:scaleType="fitCenter"
             android:layout_margin="8dp"
-            />
+            android:padding="8dp"/>
 
         <ImageButton
             android:id="@+id/ibPayPal"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/paypal"
-            android:background="@null"
+            android:background="#E1CA96"
             android:scaleType="fitCenter"
             android:layout_margin="8dp"
-            />
+            android:padding="8dp"/>
+
         <ImageButton
             android:id="@+id/ibPayBox"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/paybox"
-            android:background="@null"
+            android:background="#E1CA96"
             android:scaleType="fitCenter"
             android:layout_margin="8dp"
-            />
+            android:padding="8dp"/>
     </LinearLayout>
-
-
-
 </LinearLayout>

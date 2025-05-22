@@ -15,11 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.gymshop.R;
 import com.example.gymshop.models.Item;
+import com.example.gymshop.models.ItemOrder;
 import com.example.gymshop.screens.Item_Profile;
 import com.example.gymshop.screens.OneItem;
 import com.example.gymshop.screens.Shopping_basket;
+import com.example.gymshop.services.AuthenticationService;
 import com.example.gymshop.utils.ImageUtil;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,27 +33,17 @@ import java.util.List;
 /// @see Item
 /// @see R.layout#//item_selected_item
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> {
-    private final List<Item> itemList;
-    private final OnItemClickListener listener;
+    private final ArrayList<Item> itemList;
 
-    public interface OnItemClickListener {
-        void onAddToCartClick(Item item); // פעולה שתתבצע בלחיצה על "הוסף לעגלה"
+
+    public ItemsAdapter() {
+        this.itemList = new ArrayList<>();
     }
 
-    public ItemsAdapter(List<Item> itemList, OnItemClickListener listener) {
-        this.itemList = itemList;
-        this.listener = listener;
-    }
-    public ItemsAdapter(List<Item> itemList) {
-        this.itemList = itemList;
-        this.listener = new OnItemClickListener() {
-            @Override
-            public void onAddToCartClick(Item item) {
-
-
-
-            }
-        };
+    public void setItemList(List<Item> items) {
+        this.itemList.clear();
+        this.itemList.addAll(items);
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -59,34 +54,57 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position)
-    {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Item item = itemList.get(position);
+
         if (item == null) return;
         holder.productName.setText(item.getName());
         holder.productType.setText(item.getType());
         holder.productColor.setText(item.getColor());
         holder.productPrice.setText("₪" + item.getPrice());
         holder.productBrand.setText(item.getLogo());
+        holder.productQuantity.setText(1 + "");
+
+
         holder.productImage.setImageBitmap(ImageUtil.convertFrom64base(item.getPic()));
-        holder.btnAddToCart.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onAddToCartClick(item); // קריאה למאזין
-            }
+
+
+        holder.btnDecrease.setOnClickListener(v -> {
+
+
+            String stQuan = holder.productQuantity.getText().toString();
+
+            int quan = Integer.parseInt(stQuan);
+            if (quan >= 1) quan--;
+
+            holder.productQuantity.setText(quan + "");
+
         });
+
+        holder.btnIncrease.setOnClickListener(v -> {
+
+            String stQuan = holder.productQuantity.getText().toString();
+
+            int quan = Integer.parseInt(stQuan);
+            if (quan < 5)
+                quan++;
+
+            holder.productQuantity.setText(quan + "");
+
+
+        });
+
 
         // מאזין לכפתור הוספה לעגלה
 
-        holder.btnAddToCart.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onAddToCartClick(item);
-            }
-        });
-
 
         holder.itemView.setOnClickListener(v -> {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String username = user != null ? user.getDisplayName() : "אנונימי";
             Context context = holder.itemView.getContext();
             Intent intent = new Intent(context, Item_Profile.class);
+
+            intent.putExtra("username", AuthenticationService.getInstance().getCurrentUsername());
             intent.putExtra("itemId", item.getId()); // שולח את ה-ID של המוצר
             context.startActivity(intent);
         });
@@ -97,8 +115,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             holder.btnAddToCart.setVisibility(View.GONE);
         else {
             holder.btnAddToCart.setOnClickListener(v -> {
+                int quan = Integer.parseInt(holder.productQuantity.getText().toString());
 
-                ((OneItem) context).addItemToCart(item); // הוספת המוצר לעגלה
+                ItemOrder itemOrder = new ItemOrder(item, quan);
+
+                ((OneItem) context).addItemToCart(itemOrder); // הוספת המוצר לעגלה
             });
         }
     }
@@ -109,9 +130,13 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private ImageView productImage;
-        private TextView productName, productType, productBrand, productColor, productPrice;
-        private Button btnAddToCart;
+        public ImageView productImage;
+        public TextView productName, productType, productBrand, productColor, productPrice, productQuantity;
+        public Button btnAddToCart, btnIncrease, btnDecrease;
+
+
+        public String amontSt = "1";
+        public int amount = 1;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -121,7 +146,12 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ViewHolder> 
             productBrand = itemView.findViewById(R.id.productBrand);
             productColor = itemView.findViewById(R.id.productColor);
             productPrice = itemView.findViewById(R.id.productPrice);
+            productQuantity = itemView.findViewById(R.id.productQuantity);
+            btnIncrease = itemView.findViewById(R.id.btnIncreaseQuantity);
+            btnDecrease = itemView.findViewById(R.id.btnDecreaseQuantity);
             btnAddToCart = itemView.findViewById(R.id.btnAddToCartButton);
+
+
         }
     }
 }

@@ -5,8 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,56 +36,69 @@ public class OneItem extends AppCompatActivity {
     ItemsAdapter adapter;
     ImageButton btnCart2;
     Button btnHome, btnContact;
-    ArrayList<Item> cartItems = new ArrayList<>();
+    SearchView svItem;
+    Spinner spTypeSinon;
+    Cart cart = null;
     public DatabaseService databaseService;
 
-    private static final String CART_PREFS = "CartPrefs";
-    private static final String CART_KEY = "cartItems";
     public int quantity = 1;
 
-    private Cart cart;
-    private Button cartButton;
-    private TextView totalPriceText;
-
-    AuthenticationService authenticationService;
-
-    private String uid="";
+    private String uid = null;
+    private String txt="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oneitem);
 
+        initViews();
         databaseService = DatabaseService.getInstance();
-
-        rcItems = findViewById(R.id.rcItems);
         rcItems.setLayoutManager(new LinearLayoutManager(this));
-
         items = new ArrayList<>();
-        adapter = new ItemsAdapter(items);
-
+        adapter = new ItemsAdapter();
         rcItems.setAdapter(adapter);
-
-        btnCart2 = findViewById(R.id.btn_cart2);
-        btnHome = findViewById(R.id.btn_home2);
-        btnContact = findViewById(R.id.btn_contact2);
-
         uid = AuthenticationService.getInstance().getCurrentUserId();
-        if (uid != null) {
+        svItem.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                txt=s;
+
+                List<Item> filteredItems = new ArrayList<>();
+                filteredItems.addAll(items);
+
+                filteredItems.removeIf(item -> !item.getName().contains(txt));
+                adapter.setItemList(filteredItems);
+
+
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                txt=s;
+
+                List<Item> filteredItems = new ArrayList<>();
+                filteredItems.addAll(items);
+
+                filteredItems.removeIf(item -> !item.getName().contains(txt));
+                adapter.setItemList(filteredItems);
+
+
+                return true;
+            }
+        });
+
+
+        if (AuthenticationService.getInstance().isUserSignedIn()) {
             fetchCartFromFirebase();
-
-            // שמירת המוצר שנבחר לעגלה
-
-
-
 
             databaseService.getItems(new DatabaseService.DatabaseCallback<List<Item>>() {
                 @Override
-                public void onCompleted(List<Item> object) {
-                    Log.d("TAG", "onCompleted:" + object);
+                public void onCompleted(List<Item> is) {
+                    Log.d("TAG", "onCompleted:" + is);
                     items.clear();
-                    items.addAll(object);
-                    adapter.notifyDataSetChanged();
+                    items.addAll(is);
+                    adapter.setItemList(items);
                 }
 
                 @Override
@@ -92,59 +108,76 @@ public class OneItem extends AppCompatActivity {
             });
         }
 
+
+
+    }
+
+    public void initViews() {
+        rcItems = findViewById(R.id.rcItems);
+        btnCart2 = findViewById(R.id.btn_cart2);
+        btnHome = findViewById(R.id.btn_home2);
+        btnContact = findViewById(R.id.btn_contact2);
+        svItem = findViewById(R.id.searchViewItem);
+        spTypeSinon = findViewById(R.id.spSinon);
+
+        spTypeSinon.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i>0){
+
+
+
+                    /// example:
+                    String type = (String) adapterView.getItemAtPosition(i);
+
+
+                    List<Item> filteredItems = new ArrayList<>();
+                    filteredItems.addAll(items);
+                    filteredItems.removeIf(item -> !item.getType().equals(type));
+                  filteredItems.removeIf(item -> !item.getName().contains(txt));
+                    adapter.setItemList(filteredItems);
+
+                }
+
+                else {
+
+
+                    List<Item> filteredItems = new ArrayList<>();
+                    filteredItems.addAll(items);
+                    adapter.setItemList(filteredItems);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                List<Item> filteredItems = new ArrayList<>();
+                filteredItems.addAll(items);
+                adapter.setItemList(filteredItems);
+            }
+        });
     }
 
     private void fetchCartFromFirebase() {
-
-        databaseService.getCart(AuthenticationService.getInstance().getCurrentUserId(), new DatabaseService.DatabaseCallback<Cart>() {
+        databaseService.getCart(uid, new DatabaseService.DatabaseCallback<Cart>() {
             @Override
-            public void onCompleted(Cart cart) {
-
-                if(cart==null)
-                    cart=new Cart();
-                OneItem.this.cart = cart;
+            public void onCompleted(Cart cart2) {
+                if (cart2 == null)
+                    cart2 = new Cart();
+                cart = cart2;
             }
 
             @Override
             public void onFailed(Exception e) {
-                cart=new Cart();
+                cart = new Cart();
 
             }
         });
-
-
-    }
-
-
-    // הוספת פריט לעגלה
-    private void addToCart(Item item) {
-        // קבלת הרשימה הנוכחית מהזיכרון
-        SharedPreferences sharedPreferences = getSharedPreferences(CART_PREFS, MODE_PRIVATE);
-        // Gson gson = new Gson();
-        String json = sharedPreferences.getString(CART_KEY, "[]");
-
-        //Type type = new TypeToken<ArrayList<Item>>() {}.getType();
-        //ArrayList<Item> cartItems = gson.fromJson(json, type);
-
-        // הוספת המוצר לעגלה
-        cartItems.add(item);
-
-        // שמירת העגלה בחזרה ל-SharedPreferences
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        //editor.putString(CART_KEY, gson.toJson(cartItems));
-        editor.apply();
-
-        Toast.makeText(this, item.getName() + " נוסף לעגלה!", Toast.LENGTH_SHORT).show();
     }
 
     public void shoppingBasket(View view) {
         Intent intent = new Intent(OneItem.this, Shopping_basket.class);
-
-        intent.putExtra("cartItems",cart);
         startActivity(intent);
-
-
-
     }
 
     public void home(View view) {
@@ -166,19 +199,6 @@ public class OneItem extends AppCompatActivity {
         }
     }
 
-    public void Decrease(View view)
-    {
-        if (quantity > 1) { // מונע מספרים שליליים
-            quantity--;
-            updateQuantityDisplay();
-        }
-    }
-
-    public void Increase(View view)
-    {
-        quantity++;
-        updateQuantityDisplay();
-    }
 
     private void updateQuantityDisplay() {
         TextView quantityTextView = findViewById(R.id.productQuantity);
@@ -187,22 +207,18 @@ public class OneItem extends AppCompatActivity {
 
 
     // הוספת מוצר לעגלה
-    public void addItemToCart(Item item) {
+    public void addItemToCart(ItemOrder itemOrder) {
 
 
-
-        if(uid==null){
+        if (uid == null) {
             Toast.makeText(OneItem.this, "המוצר ktttt ", Toast.LENGTH_SHORT).show();
             return;
         }
-        if(cart==null)
-            cart=new Cart();
+        if (cart == null)
+            cart = new Cart();
 
-        ItemOrder itemOrder=new ItemOrder(item,quantity);
-
-        cart.getItems().add(itemOrder);
-
-
+        cart.addItem(itemOrder);
+        // cart.updateItemOrder( itemOrder);
 
 
         databaseService.updateCart(cart, uid, new DatabaseService.DatabaseCallback<Void>() {
@@ -211,10 +227,7 @@ public class OneItem extends AppCompatActivity {
 
                 Log.d("Update cart", cart.toString());
                 //    updateTotalPrice();  // עדכון המחיר הכולל
-
                 Toast.makeText(OneItem.this, "המוצר נוסף לעגלה", Toast.LENGTH_SHORT).show();
-
-
             }
 
             @Override
@@ -224,22 +237,6 @@ public class OneItem extends AppCompatActivity {
             }
         });
 
-    }
-
-
-    //@Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Item item = cartItems.get(position);
-        if (item == null) return;
-
-        // הצגת מידע על המוצר
-        // holder.productName.setText(item.getName());
-        // holder.productPrice.setText("₪" + item.getPrice());
-
-        // הגדרת לחצן הוספה לעגלה
-        // holder.btnAddToCartButton.setOnClickListener(v -> {
-        addItemToCart(item);  // הוספת המוצר שנבחר לעגלה
-        // });
     }
 
 

@@ -104,7 +104,7 @@ public class Item implements Serializable
                 ", color='" + color + '\'' +
                 ", logo='" + logo + '\'' +
                 ", price=" + price +
-                ", pic='" + pic + '\'' +
+//                ", pic='" + pic + '\'' +
                 '}';
     }
 }

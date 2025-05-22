@@ -1,53 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:padding="16dp"
-    android:orientation="horizontal"
-    android:background="#009688"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp"
     android:clickable="true"
     android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     tools:context=".screens.User_item">
 
-
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:background="#9BD1E5"
+        android:orientation="horizontal"
+        android:padding="16dp">
 
-       <TextView
-        android:id="@+id/FirstNamTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Name"
-        android:textSize="18sp" />
+        <!-- User Details -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-       <TextView
-        android:id="@+id/lastNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Last Name"
-        android:textSize="16sp" />
+            <TextView
+                android:id="@+id/FirstNamTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="First Name"
+                android:textColor="#0A0F0D"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-       <TextView
-        android:id="@+id/PhoneTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Phone"
-        android:textSize="16sp" />
+            <TextView
+                android:id="@+id/lastNameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Last Name"
+                android:textColor="#0A0F0D"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/PhoneTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Phone"
+                android:textColor="#746F72"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Delete Button -->
+        <ImageButton
+            android:id="@+id/imageBDeleteUser"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9BD1E5"
+            android:contentDescription="Delete User"
+            android:padding="12dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/delete"
+            app:tint="#04A777" />
     </LinearLayout>
-    <ImageButton
-        android:id="@+id/imageBDeleteUser"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/delete"
-        android:background="#009688"
-        android:padding="8dp"
-        android:contentDescription="Delete User"
-        android:scaleType="centerInside"
-        android:layout_gravity="center_vertical"/>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:layout_height="400dp">
+
+
+    <TextView
+        android:id="@+id/tvUserValueO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="20dp"
+        android:text="שם המשתמש / אימייל"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUserO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="משתמש:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/tvUserValueO"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserValueO" />
+
+    <TextView
+        android:id="@+id/tvTimestampValueO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="2025-05-22 12:34"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvTimestampO"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTimestampO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="תאריך:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvOrderIdValueO"
+        app:layout_constraintStart_toStartOf="@+id/tvOrderIdValueO"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvOrderIdO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="25dp"
+        android:text="מספר הזמנה:"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tvOrderIdValueO"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserValueO" />
+
+
+    <!-- כאן תוכל להוסיף RecyclerView או LinearLayout דינמי עבור הפריטים -->
+
+    <TextView
+        android:id="@+id/tvOrderIdValueO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:text="123456"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvOrderIdO"
+        app:layout_constraintStart_toEndOf="@+id/tvTimestampValueO" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcOtrdrItem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="57dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTotalPriceO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="מחיר כולל:"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcOtrdrItem" />
+
+    <TextView
+        android:id="@+id/tvTotalPriceValueO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="138dp"
+        android:text="₪99.99"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rcOtrdrItem" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

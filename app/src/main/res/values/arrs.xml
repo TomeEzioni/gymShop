@@ -60,4 +60,16 @@
         <item>2037</item>
     </string-array>
 
+    <string-array name="types">
+        <item>בחר סינון</item>
+        <item>אוכל</item>
+        <item>בגדים</item>
+        <item>מתקני ספורט</item>
+        <item>ספורט ימי</item>
+        <item>רצועות וגומיות</item>
+        <item>משקולות וכוח</item>
+        <item>מזרני כושר</item>
+        <item>הטבות לחדרי כושר</item>
+    </string-array>
+
 </resources>

@@ -5,13 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#E1CA96"
     android:padding="16dp">
 
+    <!-- Header section with logo and navigation -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="#9BD1E5"
+        android:padding="8dp"
+        android:elevation="4dp">
 
         <ImageView
             android:id="@+id/logo"
@@ -19,98 +24,87 @@
             android:layout_height="70dp"
             android:src="@drawable/logo" />
 
-        <ImageButton
-            android:id="@+id/btn_cart2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="סל קניות"
-            android:onClick="shoppingBasket"
-            android:src="@drawable/shopping" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btn_home2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="home"
+            android:text="דף הבית"
+            android:textColor="#E1CA96"
+            android:background="#04A777"
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/btn_contact2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="contact"
-            android:text="צור קשר" />
+            android:text="צור קשר"
+            android:textColor="#E1CA96"
+            android:background="#04A777"
+            android:layout_marginEnd="8dp" />
 
-        <Button
-        android:id="@+id/btn_home2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-            android:onClick="home"
-        android:text="דף הבית" />
+        <ImageButton
+            android:id="@+id/btn_cart2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#746F72"
+            android:contentDescription="סל קניות"
+            android:onClick="shoppingBasket"
+            android:padding="8dp"
+            android:src="@drawable/shopping" />
     </LinearLayout>
 
+    <!-- Search section -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/black">
+        android:background="#FFFFFF"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:elevation="2dp">
 
-        <Button
-            android:id="@+id/btn_food2"
-            android:layout_width="60dp"
+        <SearchView
+            android:id="@+id/searchViewItem"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="אוכל"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
+            android:layout_weight="1"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search here"
+            android:background="#FFFFFF" />
 
-        <Button
-            android:id="@+id/btn_fitness2"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="מתקני ספורט"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
-
-        <Button
-            android:id="@+id/btn_water_sports2"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="ספורט ימי"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
-
-        <Button
-            android:id="@+id/btn_bands2"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="רצועות וגומיות"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
-
-        <Button
-            android:id="@+id/btn_weights2"
-            android:layout_width="70dp"
-            android:layout_height="wrap_content"
-            android:text="משקולות וכוח"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
-
-        <Button
-            android:id="@+id/btn_mats2"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="מזרני כושר"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
-
-        <Button
-            android:id="@+id/btn_gym_offers2"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:text="הטבות לחדרי כושר"
-            android:textColor="@color/white"
-            android:background="@color/black"/>
+        <Spinner
+            android:id="@+id/spSinon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:entries="@array/types"
+            android:backgroundTint="#746F72" />
     </LinearLayout>
 
+    <!-- Content section -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcItems"
         android:layout_width="match_parent"
-        android:layout_height="731dp" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:elevation="2dp" />
 
+    <!-- Footer space (if needed) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#0A0F0D"
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>

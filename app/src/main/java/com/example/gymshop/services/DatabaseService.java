@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 
 import com.example.gymshop.models.Item;
+import com.example.gymshop.models.Order;
+import com.example.gymshop.models.Review;
 import com.example.gymshop.models.User;
 import com.example.gymshop.models.Cart;
 
@@ -123,8 +125,7 @@ public class DatabaseService {
                 Log.e(TAG, "Error getting data", task.getException());
                 callback.onFailed(task.getException());
                 return;
-            }
-            T data = task.getResult().getValue(clazz);
+            }T data = task.getResult().getValue(clazz);
             callback.onCompleted(data);
         });
     }
@@ -214,13 +215,15 @@ public class DatabaseService {
         return generateNewId("items");
     }
 
-    /// generate a new id for a new cart in the database
-    /// @return a new id for the cart
+    /// generate a new id for a new item in the database
+    /// @return a new id for the item
     /// @see #generateNewId(String)
-    /// @see Cart
-    public String generateCartId() {
-        return generateNewId("carts");
+    /// @see Item
+    public String generateOrderId() {
+        return generateNewId("orders");
     }
+
+
 
     /// get all the items from the database
     /// @param callback the callback to call when the operation is completed
@@ -279,6 +282,7 @@ public class DatabaseService {
             List<User> users = new ArrayList<>();
             task.getResult().getChildren().forEach(dataSnapshot -> {
                 User user = dataSnapshot.getValue(User.class);
+                user=new User(user);
                 Log.d(TAG, "Got user: " + user);
                 users.add(user);
             });
@@ -306,7 +310,81 @@ public class DatabaseService {
                 .addOnFailureListener(callback::onFailed);
         }
 
+    public void addReview(Review review) {
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("reviews");
+
+        // Use push() to create a unique key
+        dbRef.push().setValue(review)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("RealtimeDB", "Review added successfully.");
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("RealtimeDB", "Error adding review", e);
+                });
     }
+
+    /// create a new item in the database
+    /// @param item the item object to create
+    /// @param callback the callback to call when the operation is completed
+    ///              the callback will receive void
+    ///             if the operation fails, the callback will receive an exception
+    /// @return void
+    /// @see DatabaseCallback
+    /// @see Item
+    public void createNewOreder(@NotNull final Order order, @Nullable final DatabaseCallback<Void> callback) {
+        writeData("orders/" + order.getOrderId(), order, callback);
+        writeData("userOrders/" +order.getUser().getId()+"/"+ order.getOrderId(), order, callback);
+
+    }
+
+
+
+    public void getUserOrders(@NotNull final String uid,   @NotNull final DatabaseCallback<List<Order>> callback) {
+        readData("userOrders/" + uid).get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Error getting data", task.getException());
+                callback.onFailed(task.getException());
+                return;
+            }
+            List<Order> orders = new ArrayList<>();
+            task.getResult().getChildren().forEach(dataSnapshot -> {
+                Order order = dataSnapshot.getValue(Order.class);
+                Log.d(TAG, "Got user: " + order);
+                orders.add(order);
+            });
+
+            callback.onCompleted(orders);
+        });
+    }
+
+
+    public void getAllOrders(@NotNull final DatabaseCallback<List<Order>> callback) {
+        readData("orders").get().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Error getting data", task.getException());
+                callback.onFailed(task.getException());
+                return;
+            }
+            List<Order> orders = new ArrayList<>();
+            task.getResult().getChildren().forEach(dataSnapshot -> {
+                Order order = dataSnapshot.getValue(Order.class);
+                Log.d(TAG, "Got user: " + order);
+                orders.add(order);
+            });
+
+            callback.onCompleted(orders);
+        });
+    }
+
+
+
+
+
+
+
+
+
+}
 
 
 

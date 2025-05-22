@@ -104,6 +104,13 @@ public class AuthenticationService {
         return mAuth.getCurrentUser().getUid();
     }
 
+    public String getCurrentUsername() {
+        if (mAuth.getCurrentUser() != null) {
+            return mAuth.getCurrentUser().getDisplayName(); // או כתובת מייל וכו'
+        }
+        return null;
+    }
+
     /// check if a user is signed in
     /// @return true if a user is signed in, false otherwise
     public boolean isUserSignedIn() {

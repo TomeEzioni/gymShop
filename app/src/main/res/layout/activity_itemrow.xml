@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#E1CA96">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -22,8 +23,8 @@
             android:id="@+id/productName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="8dp"
+            android:textColor="#0A0F0D"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -31,24 +32,24 @@
             android:id="@+id/productType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="4dp"
+            android:textColor="#746F72"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/productBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="4dp"
+            android:textColor="#746F72"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/productColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="4dp"
+            android:textColor="#746F72"
             android:textSize="16sp" />
 
         <TextView
@@ -56,8 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="#04A777"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -72,7 +72,9 @@
                 android:layout_width="56dp"
                 android:layout_height="40dp"
                 android:onClick="Decrease"
-                android:text="-" />
+                android:text="-"
+                android:backgroundTint="#746F72"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/productQuantity"
@@ -81,6 +83,7 @@
                 android:gravity="center"
                 android:text="1"
                 android:textSize="18dp"
+                android:textColor="#0A0F0D"
                 android:textStyle="bold" />
 
             <Button
@@ -88,7 +91,9 @@
                 android:layout_width="53dp"
                 android:layout_height="40dp"
                 android:onClick="Increase"
-                android:text="+" />
+                android:text="+"
+                android:backgroundTint="#746F72"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <Button
@@ -98,8 +103,8 @@
             android:onClick="addToCart"
             android:layout_marginTop="16dp"
             android:text="הוסף לעגלה"
-            android:backgroundTint="#FF9800"
-            android:textColor="@color/white"/>
+            android:backgroundTint="#04A777"
+            android:textColor="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -110,11 +115,10 @@
         android:layout_marginTop="13dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="13dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

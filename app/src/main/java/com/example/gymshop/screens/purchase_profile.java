@@ -10,17 +10,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gymshop.R;
 
-public class Viewpaper2 extends AppCompatActivity {
+public class purchase_profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_viewpaper2);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.activity_purchase_profile);
     }
 }

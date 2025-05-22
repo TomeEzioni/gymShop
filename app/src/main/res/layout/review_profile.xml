@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="4dp">
+
+    <!-- User info and rating -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="right">
+
+        <TextView
+            android:id="@+id/tvReviewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/05/2025"
+            android:textColor="#746F72"
+            android:textSize="12sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <RatingBar
+            android:id="@+id/rbReviewRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?android:attr/ratingBarStyleSmall"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="true"
+            android:rating="4.5" />
+
+        <TextView
+            android:id="@+id/tvReviewUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שם משתמש"
+            android:textColor="#0A0F0D"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+    </LinearLayout>
+
+    <!-- Review text -->
+    <TextView
+        android:id="@+id/tvReviewText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="תוכן התגובה יופיע כאן. המוצר מעולה ועמד בציפיות שלי, מומלץ בחום!"
+        android:textColor="#0A0F0D"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:gravity="right" />
+
+    <!-- Separator -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

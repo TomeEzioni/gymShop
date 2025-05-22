@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <meta-data
         android:name="com.google.android.gms.version"
@@ -21,6 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymShop"
         tools:targetApi="31">
+        <activity
+            android:name=".screens.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".screens.purchase_profile"
+            android:exported="false" />
         <activity
             android:name=".screens.purchases"
             android:exported="false" />
@@ -43,10 +49,13 @@
             android:name=".screens.Item_Profile"
             android:exported="false" />
         <activity
-            android:name=".screens.Viewpaper2"
+            android:name=".screens.Shopping_basket"
             android:exported="false" />
         <activity
-            android:name=".screens.Shopping_basket"
+            android:name=".screens.AllOrders"
+            android:exported="false" />
+        <activity
+            android:name=".screens.UserOrders"
             android:exported="false" />
         <activity
             android:name=".screens.AddItem"
@@ -58,7 +67,7 @@
             android:name=".screens.Payment"
             android:exported="false" />
         <activity
-            android:name=".screens.MainActivity"
+            android:name=".screens.splash"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

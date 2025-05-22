@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -188,5 +189,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener
 
 
             }
+
+    public void goToLogin(View view) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
+}
 

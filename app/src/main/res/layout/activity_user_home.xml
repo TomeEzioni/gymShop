@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0A0F0D"
     tools:context=".screens.userHomeActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="139dp"
         android:gravity="center"
         android:text="דף משתמש"
-        android:textColor="@color/black"
+        android:textColor="#9BD1E5"
         android:textSize="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,8 @@
         android:layout_height="75dp"
         android:text="חנות"
         android:textSize="35dp"
+        android:backgroundTint="#04A777"
+        android:textColor="#0A0F0D"
         android:onClick="shop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +44,8 @@
         android:layout_height="76dp"
         android:text="שינוי פרטים"
         android:textSize="25dp"
+        android:backgroundTint="#E1CA96"
+        android:textColor="#0A0F0D"
         android:onClick="change"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,6 +59,8 @@
         android:layout_width="148dp"
         android:layout_height="72dp"
         android:text="Button"
+        android:backgroundTint="#746F72"
+        android:textColor="#9BD1E5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
